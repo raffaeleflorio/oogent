@@ -106,26 +106,24 @@ public static void main(final String[] args) {
 ```java
 public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
-    var agent = new ChainAgent(
-            new RAGAgent(
-                    new FnMapStorage(
-                            Map.of(
-                                    text -> text.text().toLowerCase().contains("oogent"),
-                                    List.of(
-                                            new SimpleText("oogent stands for Object-Oriented aGent."),
-                                            new SimpleText("oggent is a minimal 21 Java library useful to build LLM agents."),
-                                            new SimpleText("oogent uses langchain4j to communicate with LLM.")
-                                    )
+    var agent = new RAGAgent(
+            new FnMapStorage(
+                    Map.of(
+                            text -> text.text().toLowerCase().contains("oogent"),
+                            List.of(
+                                    new SimpleText("oogent stands for Object-Oriented aGent."),
+                                    new SimpleText("oggent is a minimal 21 Java library useful to build LLM agents."),
+                                    new SimpleText("oogent uses langchain4j to communicate with LLM.")
                             )
-                    ),
-                    new Langchain4JLLM(chatLanguageModel),
-                    new Langchain4JPromptTemplate("""
-                            Answer the following request using only the given reliable sources.
-                            Reliable sources: {{context}}
-                            Request: {{text}}
-                            Response:
-                            """)
-            )
+                    )
+            ),
+            new Langchain4JLLM(chatLanguageModel),
+            new Langchain4JPromptTemplate("""
+                    Answer the following request using only the given reliable sources.
+                    Reliable sources: {{context}}
+                    Request: {{text}}
+                    Response:
+                    """)
     );
     var response = agent.response(new SimpleText("What does oogent mean?"));
     System.out.println(response.text());
