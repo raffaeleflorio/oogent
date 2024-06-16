@@ -151,7 +151,7 @@ public static void main(final String[] args) {
                     According to the reliable source, oogent stands for "Object-Oriented aGent".
                     """));
     var agent = new ChainAgent(
-            new ConversationAgent(conversation, "Umano", "AI"),
+            new ConversationAgent(conversation, "Human", "AI"),
             new PromptAgent(
                     new Langchain4JLLM(chatLanguageModel),
                     new Langchain4JPromptTemplate("""
