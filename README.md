@@ -9,7 +9,7 @@ It relies on [langchain4j](https://docs.langchain4j.dev) to communicate with an 
 - RAG
 - Conversational agents
 - ReAct agents (WIP)
-- Real RAG storage implementation (WIP)
+- Real Storage implementation (WIP)
 - Real Conversations implementation (WIP)
 
 # Examples
