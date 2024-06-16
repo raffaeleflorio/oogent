@@ -138,6 +138,8 @@ public static void main(final String[] args) {
 ## Conversation and RAG
 
 ```java
+import com.raffaeleflorio.oogent.human.HumanMessage;
+
 public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
     var conversations = new InMemoryConversations();
@@ -230,8 +232,9 @@ public static void main(final String[] args) {
                     new EchoAgent(new SimpleResponse("Sorry, I don't understood your question. Could you be more specific?"))
             )
     );
-    var response = agent.response(new SimpleText("what about international titles?"));
-    conversation.append(new AiMessage(response.text()));
+    var newMessage = new HumanMessage("what about international titles?");
+    var response = agent.response(newMessage);
+    conversation.append(newMessage).append(new AiMessage(response.text()));
     conversations.save(conversation);
     System.out.println(response.text());
 }
