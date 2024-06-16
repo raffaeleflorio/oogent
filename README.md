@@ -7,8 +7,10 @@ It relies on [langchain4j](https://docs.langchain4j.dev) to communicate with an 
 
 - prompt chaining
 - RAG
+- Conversational agents
 - ReAct agents (WIP)
-- Real RAG storage (WIP)
+- Real RAG storage implementation (WIP)
+- Real Conversations implementation (WIP)
 
 # Examples
 
