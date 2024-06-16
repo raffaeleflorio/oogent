@@ -1,12 +1,18 @@
 package com.raffaeleflorio.oogent.ai;
 
 import com.raffaeleflorio.oogent.Message;
+import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.simple.SimpleText;
 
 public final class AiMessage implements Message {
 
-    private final String message;
+    private final Text message;
 
     public AiMessage(final String message) {
+        this(new SimpleText(message));
+    }
+
+    public AiMessage(final Text message) {
         this.message = message;
     }
 
@@ -22,6 +28,11 @@ public final class AiMessage implements Message {
 
     @Override
     public String text() {
-        return this.message;
+        return this.message.text();
+    }
+
+    @Override
+    public Text then(final Text text) {
+        return new AiMessage(this.message.then(text));
     }
 }

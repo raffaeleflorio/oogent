@@ -1,17 +1,27 @@
 package com.raffaeleflorio.oogent.simple;
 
 import com.raffaeleflorio.oogent.Response;
+import com.raffaeleflorio.oogent.Text;
 
 public final class SimpleResponse implements Response {
 
-    private final String text;
+    private final Text text;
 
     public SimpleResponse(final String text) {
+        this(new SimpleText(text));
+    }
+
+    public SimpleResponse(final Text text) {
         this.text = text;
     }
 
     @Override
     public String text() {
-        return this.text;
+        return this.text.text();
+    }
+
+    @Override
+    public Text then(final Text text) {
+        return new SimpleResponse(this.text.then(text));
     }
 }

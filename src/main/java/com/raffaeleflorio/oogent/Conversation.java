@@ -1,6 +1,6 @@
 package com.raffaeleflorio.oogent;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 public interface Conversation {
 
@@ -8,5 +8,5 @@ public interface Conversation {
 
     Conversation append(Message message);
 
-    Stream<Message> stream(); // TODO: simplify with List<Text> asList(fn)
+    List<Text> asList(Text humanId, Text agentId);
 }

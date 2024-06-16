@@ -1,6 +1,6 @@
 # OOGent (Object-Oriented aGent)
 
-OOGent is a minimal Java 21 library to build LLM agents. It's written with Object-Oriented principle in mind.
+OOGent is a minimal Java 21 library useful to build LLM agents. It's written with Object-Oriented principles in mind.
 It relies on [langchain4j](https://docs.langchain4j.dev) to communicate with an LLM.
 
 # Features
@@ -149,7 +149,7 @@ public static void main(final String[] args) {
                     According to the reliable source, oogent stands for "Object-Oriented aGent".
                     """));
     var agent = new ChainAgent(
-            new ConversationAgent(conversation, "Human", "AI"),
+            new ConversationAgent(conversation, "Human: ", "AI: "),
             new PromptAgent(
                     new Langchain4JLLM(chatLanguageModel),
                     new Langchain4JPromptTemplate("""
@@ -201,7 +201,7 @@ public static void main(final String[] args) {
                                             """)
                             )
                     ),
-                    new EchoAgent(new SimpleResponse("Sorry, I don't understood your question. Could you be more specific?"))
+                    new EchoAgent(new SimpleResponse("Sorry, I didn't understand your request. Could you be more specific?"))
             )
     );
 

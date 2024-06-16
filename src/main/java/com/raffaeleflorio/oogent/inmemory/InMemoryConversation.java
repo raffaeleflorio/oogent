@@ -2,6 +2,7 @@ package com.raffaeleflorio.oogent.inmemory;
 
 import com.raffaeleflorio.oogent.Conversation;
 import com.raffaeleflorio.oogent.Message;
+import com.raffaeleflorio.oogent.Text;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +40,10 @@ public final class InMemoryConversation implements Conversation {
     }
 
     @Override
-    public Stream<Message> stream() {
-        return this.messages.stream();
+    public List<Text> asList(final Text humanId, final Text aiId) {
+        return this.messages
+                .stream()
+                .map(message -> message.human() ? humanId.then(message) : aiId.then(message))
+                .toList();
     }
 }

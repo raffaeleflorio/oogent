@@ -14,4 +14,9 @@ public final class SimpleText implements Text {
     public String text() {
         return this.text;
     }
+
+    @Override
+    public Text then(final Text text) {
+        return new SimpleText(this.text.concat(text.text()));
+    }
 }
