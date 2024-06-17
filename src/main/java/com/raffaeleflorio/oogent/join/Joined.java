@@ -28,4 +28,19 @@ public final class Joined implements Text {
     public Text then(final Text text) {
         return new SimpleText(this.asString()).then(text);
     }
+
+    @Override
+    public Boolean contains(final Text text) {
+        return this.asString().contains(text.asString());
+    }
+
+    @Override
+    public Text afterLast(final Text text) {
+        return new SimpleText(this.asString()).afterLast(text);
+    }
+
+    @Override
+    public Text beforeFirst(final Text text) {
+        return new SimpleText(this.asString()).beforeFirst(text);
+    }
 }

@@ -35,4 +35,19 @@ public final class AiMessage implements Message {
     public Text then(final Text text) {
         return new AiMessage(this.message.then(text));
     }
+
+    @Override
+    public Boolean contains(final Text text) {
+        return this.message.contains(text);
+    }
+
+    @Override
+    public Text afterLast(final Text text) {
+        return this.message.afterLast(text);
+    }
+
+    @Override
+    public Text beforeFirst(final Text text) {
+        return this.message.beforeFirst(text);
+    }
 }

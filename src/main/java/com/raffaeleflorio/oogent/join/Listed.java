@@ -26,4 +26,19 @@ public final class Listed implements Text {
     public Text then(final Text text) {
         return this.origin.then(text);
     }
+
+    @Override
+    public Boolean contains(final Text text) {
+        return this.origin.contains(text);
+    }
+
+    @Override
+    public Text afterLast(final Text text) {
+        return this.origin.afterLast(text);
+    }
+
+    @Override
+    public Text beforeFirst(final Text text) {
+        return this.origin.beforeFirst(text);
+    }
 }

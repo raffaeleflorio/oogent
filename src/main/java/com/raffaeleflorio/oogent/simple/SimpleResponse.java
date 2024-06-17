@@ -24,4 +24,19 @@ public final class SimpleResponse implements Response {
     public Text then(final Text text) {
         return new SimpleResponse(this.text.then(text));
     }
+
+    @Override
+    public Boolean contains(final Text text) {
+        return this.text.contains(text);
+    }
+
+    @Override
+    public Text afterLast(final Text text) {
+        return this.text.afterLast(text);
+    }
+
+    @Override
+    public Text beforeFirst(final Text text) {
+        return this.text.beforeFirst(text);
+    }
 }
