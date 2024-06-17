@@ -42,7 +42,7 @@ public final class Main {
                                 Under his leadership, the club has stabilized, which has led to renewed on-field success, winning 2005–06 Serie C1, the 2012, 2014, and 2020 Coppa Italia titles, and the 2014 Supercoppa Italiana, eventually culminating in their third league title in 2023, the first since Maradona's departure."""
                         )
                 );
-        System.out.println(response.text());
+        System.out.println(response.asString());
         /*
             Napoli is a historic Italian football club that has experienced periods of success and struggles over its nearly century-long history.
          */
@@ -88,7 +88,7 @@ public static void main(final String[] args) {
                             Under his leadership, the club has stabilized, which has led to renewed on-field success, winning 2005–06 Serie C1, the 2012, 2014, and 2020 Coppa Italia titles, and the 2014 Supercoppa Italiana, eventually culminating in their third league title in 2023, the first since Maradona's departure."""
                     )
             );
-    System.out.println(response.text());
+    System.out.println(response.asString());
     /*
             Here are the keywords I've identified from the text:
 
@@ -109,7 +109,7 @@ public static void main(final String[] args) {
     var agent = new RAGAgent(
             new FnMapStorage(
                     Map.of(
-                            text -> text.text().toLowerCase().contains("oogent"),
+                            text -> text.asString().toLowerCase().contains("oogent"),
                             List.of(
                                     new SimpleText("oogent stands for Object-Oriented aGent."),
                                     new SimpleText("oggent is a minimal 21 Java library useful to build LLM agents."),
@@ -126,7 +126,7 @@ public static void main(final String[] args) {
                     """)
     );
     var response = agent.response(new SimpleText("What does oogent mean?"));
-    System.out.println(response.text());
+    System.out.println(response.asString());
     /*
             According to the reliable source, oogent stands for "Object-Oriented aGent".
      */
@@ -177,7 +177,7 @@ public static void main(final String[] args) {
                             """)
             ),
             new IfAgent(
-                    text -> text.text().toLowerCase().contains("rephrase:"),
+                    text -> text.asString().toLowerCase().contains("rephrase:"),
                     new ChainAgent(
                             new RegexAgent(
                                     Pattern.compile("Rephrase:", Pattern.CASE_INSENSITIVE)
@@ -185,7 +185,7 @@ public static void main(final String[] args) {
                             new RAGAgent(
                                     new FnMapStorage(
                                             Map.of(
-                                                    text -> text.text().toLowerCase().contains("oogent"),
+                                                    text -> text.asString().toLowerCase().contains("oogent"),
                                                     List.of(
                                                             new SimpleText("oogent stands for Object-Oriented aGent."),
                                                             new SimpleText("oggent is a minimal 21 Java library useful to build LLM agents."),
@@ -208,9 +208,9 @@ public static void main(final String[] args) {
 
     var newMessage = new HumanMessage("and is it compatible with which language?");
     var response = agent.response(newMessage);
-    conversation.append(newMessage).append(new AiMessage(response.text()));
+    conversation.append(newMessage).append(new AiMessage(response.asString()));
     conversations.save(conversation);
-    System.out.println(response.text());
+    System.out.println(response.asString());
     /*
         According to the reliable source, oogent (Object-Oriented aGent) is a minimal 21 Java library. Therefore, based on this information, we can conclude that oogent is compatible with the Java programming language.
      */
