@@ -1,12 +1,10 @@
 package com.raffaeleflorio.oogent;
 
-import java.util.List;
-
 public interface Conversation {
 
-    String id();
+    Text id();
 
     Conversation append(Message message);
 
-    List<Text> asList(Text humanId, Text agentId);
+    Texts asTexts(Text humanId, Text aiId);
 }

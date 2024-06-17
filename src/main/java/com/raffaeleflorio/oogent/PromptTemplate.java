@@ -4,13 +4,11 @@ import java.util.Map;
 
 public interface PromptTemplate {
 
-    String prompt(Map<String, String> variables);
+    Text prompt(Map<Text, Text> variables);
 
-    default String prompt() {
+    Text prompt(Text text);
+
+    default Text prompt() {
         return this.prompt(Map.of());
-    }
-
-    default String prompt(String text) {
-        return this.prompt(Map.of("it", text));
     }
 }

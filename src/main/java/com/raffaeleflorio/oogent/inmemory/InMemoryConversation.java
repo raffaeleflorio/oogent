@@ -3,6 +3,9 @@ package com.raffaeleflorio.oogent.inmemory;
 import com.raffaeleflorio.oogent.Conversation;
 import com.raffaeleflorio.oogent.Message;
 import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.Texts;
+import com.raffaeleflorio.oogent.simple.SimpleText;
+import com.raffaeleflorio.oogent.simple.SimpleTexts;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,7 +13,7 @@ import java.util.stream.Stream;
 
 public final class InMemoryConversation implements Conversation {
 
-    private final String id;
+    private final Text id;
     private final List<Message> messages;
 
     public InMemoryConversation() {
@@ -18,16 +21,20 @@ public final class InMemoryConversation implements Conversation {
     }
 
     public InMemoryConversation(final String id) {
+        this(new SimpleText(id));
+    }
+
+    public InMemoryConversation(final Text id) {
         this(id, List.of());
     }
 
-    InMemoryConversation(final String id, final List<Message> messages) {
+    InMemoryConversation(final Text id, final List<Message> messages) {
         this.id = id;
         this.messages = messages;
     }
 
     @Override
-    public String id() {
+    public Text id() {
         return this.id;
     }
 
@@ -40,10 +47,12 @@ public final class InMemoryConversation implements Conversation {
     }
 
     @Override
-    public List<Text> asList(final Text humanId, final Text aiId) {
-        return this.messages
-                .stream()
-                .map(message -> message.human() ? humanId.then(message) : aiId.then(message))
-                .toList();
+    public Texts asTexts(final Text humanId, final Text aiId) {
+        return new SimpleTexts(
+                this.messages
+                        .stream()
+                        .map(message -> message.human() ? humanId.then(message) : aiId.then(message))
+                        .toList()
+        );
     }
 }

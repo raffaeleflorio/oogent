@@ -2,5 +2,5 @@ package com.raffaeleflorio.oogent;
 
 public interface LLM {
 
-    String completion(String string);
+    Text completion(Text text);
 }

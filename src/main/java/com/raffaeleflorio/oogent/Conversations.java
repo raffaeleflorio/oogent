@@ -4,9 +4,9 @@ import java.util.Optional;
 
 public interface Conversations {
 
-    Optional<Conversation> conversation(String id);
+    Optional<Conversation> conversation(Text id);
 
     void save(Conversation conversation);
 
-    void delete(String id);
+    void delete(Text id);
 }

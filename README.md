@@ -137,12 +137,13 @@ public static void main(final String[] args) {
 
 ```java
 import com.raffaeleflorio.oogent.human.HumanMessage;
+import com.raffaeleflorio.oogent.simple.SimpleText;
 
 public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
     var conversations = new InMemoryConversations();
     var conversation = conversations
-            .conversation("conversationId")
+            .conversation(new SimpleText("conversationId"))
             .orElseGet(InMemoryConversation::new)
             .append(new HumanMessage("What does oogent mean?"))
             .append(new AiMessage("""

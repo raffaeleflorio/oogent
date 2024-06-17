@@ -16,7 +16,6 @@ public final class HumanMessage implements Message {
         this.message = message;
     }
 
-
     @Override
     public Boolean ai() {
         return false;
@@ -28,8 +27,8 @@ public final class HumanMessage implements Message {
     }
 
     @Override
-    public String text() {
-        return this.message.text();
+    public String asString() {
+        return this.message.asString();
     }
 
     @Override

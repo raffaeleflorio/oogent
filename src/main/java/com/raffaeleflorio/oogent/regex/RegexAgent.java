@@ -11,12 +11,20 @@ public final class RegexAgent implements Agent {
 
     private final Pattern regex;
 
+    public RegexAgent(final Text regex, final Integer flags) {
+        this(regex.asString(), flags);
+    }
+
+    public RegexAgent(final String regex, final Integer flags) {
+        this(Pattern.compile(regex, flags));
+    }
+
     public RegexAgent(final Pattern regex) {
         this.regex = regex;
     }
 
     @Override
     public Response response(final Text text) {
-        return new SimpleResponse(this.regex.split(text.text())[1]);
+        return new SimpleResponse(this.regex.split(text.asString())[1]);
     }
 }

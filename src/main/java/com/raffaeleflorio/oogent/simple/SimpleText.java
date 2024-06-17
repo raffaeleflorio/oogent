@@ -11,12 +11,12 @@ public final class SimpleText implements Text {
     }
 
     @Override
-    public String text() {
+    public String asString() {
         return this.text;
     }
 
     @Override
     public Text then(final Text text) {
-        return new SimpleText(this.text.concat(text.text()));
+        return new SimpleText(this.text.concat(text.asString()));
     }
 }

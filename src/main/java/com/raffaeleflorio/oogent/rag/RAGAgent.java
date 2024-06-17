@@ -7,9 +7,9 @@ import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Storage;
 import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.simple.SimpleResponse;
+import com.raffaeleflorio.oogent.simple.SimpleText;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class RAGAgent implements Agent {
 
@@ -25,14 +25,14 @@ public final class RAGAgent implements Agent {
 
     @Override
     public Response response(final Text text) {
-        var message = this.promptTemplate.prompt(Map.of("context", this.context(text), "text", text.text()));
+        var message = this.promptTemplate.prompt(this.variables(text));
         return new SimpleResponse(this.llm.completion(message));
     }
 
-    private String context(final Text text) {
-        return this.storage.output(text)
-                .stream()
-                .map(Text::text)
-                .collect(Collectors.joining("\n"));
+    private Map<Text, Text> variables(final Text text) {
+        return Map.of(
+                new SimpleText("text"), text,
+                new SimpleText("context"), this.storage.output(text).listed()
+        );
     }
 }

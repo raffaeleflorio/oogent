@@ -7,9 +7,6 @@ import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.simple.SimpleResponse;
 import com.raffaeleflorio.oogent.simple.SimpleText;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public final class ConversationAgent implements Agent {
 
     private final Conversation conversation;
@@ -29,10 +26,9 @@ public final class ConversationAgent implements Agent {
     @Override
     public Response response(final Text text) {
         return new SimpleResponse(
-                Stream.concat(
-                        this.conversation.asList(this.humanId, this.aiId).stream().map(Text::text),
-                        Stream.of(this.humanId.then(text).text())
-                ).collect(Collectors.joining("\n"))
+                this.conversation.asTexts(this.humanId, this.aiId)
+                        .then(this.humanId.then(text))
+                        .listed()
         );
     }
 }

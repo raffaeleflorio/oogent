@@ -27,8 +27,8 @@ public final class AiMessage implements Message {
     }
 
     @Override
-    public String text() {
-        return this.message.text();
+    public String asString() {
+        return this.message.asString();
     }
 
     @Override

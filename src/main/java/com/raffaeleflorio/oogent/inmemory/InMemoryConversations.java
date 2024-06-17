@@ -2,6 +2,7 @@ package com.raffaeleflorio.oogent.inmemory;
 
 import com.raffaeleflorio.oogent.Conversation;
 import com.raffaeleflorio.oogent.Conversations;
+import com.raffaeleflorio.oogent.Text;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,17 +21,17 @@ public final class InMemoryConversations implements Conversations {
     }
 
     @Override
-    public Optional<Conversation> conversation(final String id) {
-        return Optional.ofNullable(this.conversations.get(id));
+    public Optional<Conversation> conversation(final Text id) {
+        return Optional.ofNullable(this.conversations.get(id.asString()));
     }
 
     @Override
     public void save(final Conversation conversation) {
-        this.conversations.put(conversation.id(), conversation);
+        this.conversations.put(conversation.id().asString(), conversation);
     }
 
     @Override
-    public void delete(final String id) {
-        this.conversations.remove(id);
+    public void delete(final Text id) {
+        this.conversations.remove(id.asString());
     }
 }

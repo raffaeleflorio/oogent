@@ -2,7 +2,7 @@ package com.raffaeleflorio.oogent;
 
 public interface Text {
 
-    String text();
+    String asString();
 
     Text then(Text text);
 }

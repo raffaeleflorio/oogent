@@ -16,8 +16,8 @@ public final class SimpleResponse implements Response {
     }
 
     @Override
-    public String text() {
-        return this.text.text();
+    public String asString() {
+        return this.text.asString();
     }
 
     @Override
