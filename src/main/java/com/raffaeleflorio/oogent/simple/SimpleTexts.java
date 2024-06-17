@@ -3,6 +3,7 @@ package com.raffaeleflorio.oogent.simple;
 import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.Texts;
 import com.raffaeleflorio.oogent.join.Joined;
+import com.raffaeleflorio.oogent.join.Listed;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -31,7 +32,7 @@ public final class SimpleTexts implements Texts {
 
     @Override
     public Text listed() {
-        return this.joined(new SimpleText("\n"));
+        return new Listed(this.texts);
     }
 
     @NotNull
