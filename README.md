@@ -3,14 +3,16 @@
 OOGent is a minimal Java 21 library useful to build LLM agents. It's written with Object-Oriented principles in mind.
 It relies on [langchain4j](https://docs.langchain4j.dev) to communicate with an LLM.
 
+It's work in progress.
+
 # Features
 
 - prompt chaining
 - RAG
 - Conversational agents
 - ReAct agents (WIP)
-- Real Storage implementation (WIP)
-- Real Conversations implementation (WIP)
+- Real `Storage` implementation (WIP)
+- Real `Conversations` implementation (WIP)
 
 # Examples
 
@@ -213,6 +215,81 @@ public static void main(final String[] args) {
     System.out.println(response.asString());
     /*
         According to the reliable source, oogent (Object-Oriented aGent) is a minimal 21 Java library. Therefore, based on this information, we can conclude that oogent is compatible with the Java programming language.
+     */
+}
+```
+
+## ReAct
+
+```java
+public static void main(final String[] args) {
+    var chatLanguageModel = OllamaChatModel.builder()
+            .modelName("qwen2:7b")
+            .baseUrl("http://127.0.0.1:11434")
+            .stop(List.of("Output: "))
+            .temperature(0.0)
+            .build();
+    var agent = new ReActAgent(
+            new Langchain4JLLM(chatLanguageModel),
+            new Langchain4JPromptTemplate("""
+                    Answer the given request as best as possible. You could use the following tools as helpers:
+                    {{actions}}
+                                            
+                    The format you have to follow is:
+                    Thought: a thought about what you need to do.
+                    Tool: a tool you need to use to process the request. Omit this step if you don't need to use a tool. Don't write None or other words. You just need to omit it when you don't need it.
+                    Input: the input to the previous tool.
+                    Output: the output of the previous tool.
+                    ... other N Thought and Tool
+                    Thought: now I know the answer!
+                    Answer: the answer
+                                       
+                    It's really important to follow the aforesaid format. You don't need to prepend or append nothing.
+                    Let's begin!
+                               
+                    Request: {{text}}                             
+                    Thought:
+                    """),
+            action -> new SimpleText("- ").then(action.id()).then(new SimpleText(": ")).then(action.description()),
+            new SimpleText("Answer: "),
+            new SimpleText("Tool: "),
+            new SimpleText("Input: "),
+            new SimpleText("Output: "),
+            new SimpleText("Thought: "),
+            new ActionAgent(
+                    new FunctionAgent(
+                            () -> new SimpleResponse(
+                                    "Today is ".concat(LocalDate.now().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH))
+                            )
+                    ),
+                    "currentDay",
+                    "retrieves which is the current day (e.g., Saturday)"
+            ),
+            new ActionAgent(
+                    new FunctionAgent(
+                            () -> new SimpleResponse(
+                                    "The current time is ".concat(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")))
+                            )
+                    ),
+                    "currentTime",
+                    "retrieves the current time (e.g., 10:52)"
+            )
+    );
+    System.out.println(agent.response(new SimpleText("Hi")).asString());
+    /*
+            Hello! How can I assist you today?
+     */
+    System.out.println(agent.response(new SimpleText("What day is it?")).asString());
+    /*
+            It's Tuesday.
+     */
+    System.out.println(agent.response(new SimpleText("What time is it?")).asString());
+    /*
+            It's 10:05.
+     */
+    System.out.println(agent.response(new SimpleText("What day and what time is it?")).asString());
+    /*
+            Today is Tuesday and the current time is 10:05.
      */
 }
 ```
