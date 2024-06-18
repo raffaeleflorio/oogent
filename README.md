@@ -144,9 +144,7 @@ import com.raffaeleflorio.oogent.simple.SimpleText;
 public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build();
     var conversations = new InMemoryConversations();
-    var conversation = conversations
-            .conversation(new SimpleText("conversationId"))
-            .orElseGet(InMemoryConversation::new)
+    var conversation = conversations.conversation()
             .append(new HumanMessage("What does oogent mean?"))
             .append(new AiMessage("""
                     According to the reliable source, oogent stands for "Object-Oriented aGent".

@@ -11,20 +11,20 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-public final class InMemoryConversation implements Conversation {
+final class InMemoryConversation implements Conversation {
 
     private final Text id;
     private final List<Message> messages;
 
-    public InMemoryConversation() {
+    InMemoryConversation() {
         this(UUID.randomUUID().toString());
     }
 
-    public InMemoryConversation(final String id) {
+    InMemoryConversation(final String id) {
         this(new SimpleText(id));
     }
 
-    public InMemoryConversation(final Text id) {
+    InMemoryConversation(final Text id) {
         this(id, List.of());
     }
 

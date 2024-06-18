@@ -26,6 +26,13 @@ public final class InMemoryConversations implements Conversations {
     }
 
     @Override
+    public Conversation conversation() {
+        var result = new InMemoryConversation();
+        this.save(result);
+        return result;
+    }
+
+    @Override
     public void save(final Conversation conversation) {
         this.conversations.put(conversation.id().asString(), conversation);
     }
