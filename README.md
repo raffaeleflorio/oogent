@@ -23,7 +23,7 @@ public final class Main {
 
     public static void main(final String[] args) {
         var llm = new Langchain4JLLM(
-                OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build()
+                OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build()
         );
         var promptTemplate = new Langchain4JPromptTemplate("""
                 Summarise the following text in a single phrase.
@@ -56,7 +56,7 @@ public final class Main {
 
 ```java
 public static void main(final String[] args) {
-    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
+    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build();
     var agent = new ChainAgent(
             new PromptAgent(
                     new Langchain4JLLM(chatLanguageModel),
@@ -107,7 +107,7 @@ public static void main(final String[] args) {
 
 ```java
 public static void main(final String[] args) {
-    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
+    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build();
     var agent = new RAGAgent(
             new FnMapStorage(
                     Map.of(
@@ -142,7 +142,7 @@ import com.raffaeleflorio.oogent.human.HumanMessage;
 import com.raffaeleflorio.oogent.simple.SimpleText;
 
 public static void main(final String[] args) {
-    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3").baseUrl("http://127.0.0.1:11434").build();
+    var chatLanguageModel = OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build();
     var conversations = new InMemoryConversations();
     var conversation = conversations
             .conversation(new SimpleText("conversationId"))
