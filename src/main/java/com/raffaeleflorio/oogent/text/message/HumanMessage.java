@@ -60,4 +60,9 @@ public final class HumanMessage implements Message {
     public Text beforeLast(final Text text) {
         return this.message.beforeLast(text);
     }
+
+    @Override
+    public Boolean empty() {
+        return this.message.empty();
+    }
 }

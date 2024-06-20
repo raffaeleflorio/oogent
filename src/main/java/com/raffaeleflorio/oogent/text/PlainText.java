@@ -60,4 +60,9 @@ public final class PlainText implements Text {
                 this.text.lastIndexOf(text.asString())
         );
     }
+
+    @Override
+    public Boolean empty() {
+        return this.text.isBlank();
+    }
 }

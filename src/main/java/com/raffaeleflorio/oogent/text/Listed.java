@@ -50,4 +50,9 @@ public final class Listed implements Text {
     public Text beforeLast(final Text text) {
         return this.origin.beforeLast(text);
     }
+
+    @Override
+    public Boolean empty() {
+        return this.origin.empty();
+    }
 }

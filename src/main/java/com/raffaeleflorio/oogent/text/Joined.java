@@ -52,4 +52,9 @@ public final class Joined implements Text {
     public Text beforeLast(final Text text) {
         return new PlainText(this.asString()).beforeLast(text);
     }
+
+    @Override
+    public Boolean empty() {
+        return this.texts.stream().allMatch(Text::empty);
+    }
 }

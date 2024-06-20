@@ -50,4 +50,9 @@ public final class TextResponse implements Response {
     public Text beforeLast(final Text text) {
         return this.text.beforeLast(text);
     }
+
+    @Override
+    public Boolean empty() {
+        return this.text.empty();
+    }
 }

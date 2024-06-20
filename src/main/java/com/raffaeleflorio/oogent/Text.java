@@ -15,4 +15,6 @@ public interface Text {
     Text beforeFirst(Text text);
 
     Text beforeLast(Text text);
+
+    Boolean empty();
 }
