@@ -32,7 +32,7 @@ public final class AiMessage implements Message {
     }
 
     @Override
-    public Text then(final Text text) {
+    public Message then(final Text text) {
         return new AiMessage(this.message.then(text));
     }
 
@@ -42,23 +42,23 @@ public final class AiMessage implements Message {
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.message.afterFirst(text);
+    public Message afterFirst(final Text text) {
+        return new AiMessage(this.message.afterFirst(text));
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.message.afterLast(text);
+    public Message afterLast(final Text text) {
+        return new AiMessage(this.message.afterLast(text));
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.message.beforeFirst(text);
+    public Message beforeFirst(final Text text) {
+        return new AiMessage(this.message.beforeFirst(text));
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.message.beforeLast(text);
+    public Message beforeLast(final Text text) {
+        return new AiMessage(this.message.beforeLast(text));
     }
 
     @Override

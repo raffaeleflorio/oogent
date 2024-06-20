@@ -22,7 +22,7 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Text then(final Text text) {
+    public Response then(final Text text) {
         return new TextResponse(this.text.then(text));
     }
 
@@ -32,23 +32,23 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.text.afterFirst(text);
+    public Response afterFirst(final Text text) {
+        return new TextResponse(this.text.afterFirst(text));
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.text.afterLast(text);
+    public Response afterLast(final Text text) {
+        return new TextResponse(this.text.afterLast(text));
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.text.beforeFirst(text);
+    public Response beforeFirst(final Text text) {
+        return new TextResponse(this.text.beforeFirst(text));
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.text.beforeLast(text);
+    public Response beforeLast(final Text text) {
+        return new TextResponse(this.text.beforeLast(text));
     }
 
     @Override
