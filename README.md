@@ -139,8 +139,8 @@ public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3:8b").baseUrl("http://127.0.0.1:11434").build();
     var conversations = new InMemoryConversations();
     var conversation = conversations.conversation()
-            .append(new HumanMessage("What does oogent mean?"))
-            .append(new AiMessage("""
+            .with(new HumanMessage("What does oogent mean?"))
+            .with(new AiMessage("""
                     According to the reliable source, oogent stands for "Object-Oriented aGent".
                     """));
     var agent = new ChainAgent(
@@ -202,8 +202,7 @@ public static void main(final String[] args) {
 
     var newMessage = new HumanMessage("and is it compatible with which language?");
     var response = agent.response(newMessage);
-    conversation.append(newMessage).append(new AiMessage(response.asString()));
-    conversations.save(conversation);
+    conversations.save(conversation.with(newMessage).with(new AiMessage(response.asString())));
     System.out.println(response.asString());
     /*
         According to the reliable source, oogent (Object-Oriented aGent) is a minimal 21 Java library. Therefore, based on this information, we can conclude that oogent is compatible with the Java programming language.
