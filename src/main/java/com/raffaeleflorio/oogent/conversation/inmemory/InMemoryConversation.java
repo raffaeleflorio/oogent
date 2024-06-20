@@ -55,4 +55,32 @@ final class InMemoryConversation implements Conversation {
                         .toList()
         );
     }
+
+    @Override
+    public Integer size() {
+        return this.messages.size();
+    }
+
+    @Override
+    public Conversation head(final Integer messages) {
+        return this.subList(
+                0,
+                Math.min(messages, this.messages.size())
+        );
+    }
+
+    private Conversation subList(final Integer begin, final Integer end) {
+        return new InMemoryConversation(
+                this.id,
+                this.messages.subList(begin, end)
+        );
+    }
+
+    @Override
+    public Conversation tail(final Integer messages) {
+        return this.subList(
+                this.messages.size() - Math.min(messages, this.messages.size()),
+                this.messages.size()
+        );
+    }
 }

@@ -7,4 +7,10 @@ public interface Conversation {
     Conversation append(Message message);
 
     Texts asTexts(Text humanId, Text aiId);
+
+    Integer size();
+
+    Conversation head(Integer messages);
+
+    Conversation tail(Integer messages);
 }
