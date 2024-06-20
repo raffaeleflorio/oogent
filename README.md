@@ -138,7 +138,8 @@ public static void main(final String[] args) {
 ## Conversation and RAG
 
 ```java
-import com.raffaeleflorio.oogent.human.HumanMessage;
+import com.raffaeleflorio.oogent.constant.ConstAgent;
+import com.raffaeleflorio.oogent.functional.FunctionalAgent;import com.raffaeleflorio.oogent.human.HumanMessage;
 import com.raffaeleflorio.oogent.simple.SimpleText;
 
 public static void main(final String[] args) {
@@ -179,7 +180,7 @@ public static void main(final String[] args) {
             new IfAgent(
                     text -> text.asString().toLowerCase().contains("rephrase:"),
                     new ChainAgent(
-                            new FunctionAgent(
+                            new FunctionalAgent(
                                     text -> new SimpleResponse(text.afterLast(new SimpleText("Rephrase:")))
                             ),
                             new RAGAgent(
@@ -202,7 +203,7 @@ public static void main(final String[] args) {
                                             """)
                             )
                     ),
-                    new EchoAgent(new SimpleResponse("Sorry, I didn't understand your request. Could you be more specific?"))
+                    new ConstAgent(new SimpleResponse("Sorry, I didn't understand your request. Could you be more specific?"))
             )
     );
 
@@ -220,7 +221,7 @@ public static void main(final String[] args) {
 ## ReAct
 
 ```java
-public static void main(final String[] args) {
+import com.raffaeleflorio.oogent.functional.FunctionalAgent;public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder()
             .modelName("qwen2:7b")
             .baseUrl("http://127.0.0.1:11434")
@@ -255,7 +256,7 @@ public static void main(final String[] args) {
             new SimpleText("Output: "),
             new SimpleText("Thought: "),
             new ActionAgent(
-                    new FunctionAgent(
+                    new FunctionalAgent(
                             () -> new SimpleResponse(
                                     "Today is ".concat(LocalDate.now().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH))
                             )
@@ -264,7 +265,7 @@ public static void main(final String[] args) {
                     "retrieves which is the current day (e.g., Saturday)"
             ),
             new ActionAgent(
-                    new FunctionAgent(
+                    new FunctionalAgent(
                             () -> new SimpleResponse(
                                     "The current time is ".concat(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")))
                             )
