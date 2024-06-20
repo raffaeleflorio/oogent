@@ -2,7 +2,7 @@ package com.raffaeleflorio.oogent.langchain4j;
 
 import com.raffaeleflorio.oogent.PromptTemplate;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.simple.SimpleText;
+import com.raffaeleflorio.oogent.text.PlainText;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ public final class L4JPromptTemplate implements PromptTemplate {
     private final dev.langchain4j.model.input.PromptTemplate promptTemplate;
 
     public L4JPromptTemplate(final String promptTemplate) {
-        this(new SimpleText(promptTemplate));
+        this(new PlainText(promptTemplate));
     }
 
     public L4JPromptTemplate(final Text promptTemplate) {
@@ -25,7 +25,7 @@ public final class L4JPromptTemplate implements PromptTemplate {
 
     @Override
     public Text prompt(final Map<Text, Text> variables) {
-        return new SimpleText(
+        return new PlainText(
                 this.promptTemplate.apply(
                         variables
                                 .entrySet()
@@ -38,6 +38,6 @@ public final class L4JPromptTemplate implements PromptTemplate {
 
     @Override
     public Text prompt(final Text text) {
-        return this.prompt(Map.of(new SimpleText("it"), text));
+        return this.prompt(Map.of(new PlainText("it"), text));
     }
 }

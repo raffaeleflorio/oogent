@@ -2,7 +2,7 @@ package com.raffaeleflorio.oogent.langchain4j;
 
 import com.raffaeleflorio.oogent.LLM;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.simple.SimpleText;
+import com.raffaeleflorio.oogent.text.PlainText;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 
 public final class L4JLLM implements LLM {
@@ -15,6 +15,6 @@ public final class L4JLLM implements LLM {
 
     @Override
     public Text completion(final Text text) {
-        return new SimpleText(this.chatLanguageModel.generate(text.asString()));
+        return new PlainText(this.chatLanguageModel.generate(text.asString()));
     }
 }
