@@ -32,6 +32,11 @@ public final class Listed implements Text {
     }
 
     @Override
+    public Text afterFirst(final Text text) {
+        return this.origin.afterFirst(text);
+    }
+
+    @Override
     public Text afterLast(final Text text) {
         return this.origin.afterLast(text);
     }
@@ -39,5 +44,10 @@ public final class Listed implements Text {
     @Override
     public Text beforeFirst(final Text text) {
         return this.origin.beforeFirst(text);
+    }
+
+    @Override
+    public Text beforeLast(final Text text) {
+        return this.origin.beforeLast(text);
     }
 }

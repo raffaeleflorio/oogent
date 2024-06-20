@@ -32,6 +32,11 @@ public final class TextResponse implements Response {
     }
 
     @Override
+    public Text afterFirst(final Text text) {
+        return this.text.afterFirst(text);
+    }
+
+    @Override
     public Text afterLast(final Text text) {
         return this.text.afterLast(text);
     }
@@ -39,5 +44,10 @@ public final class TextResponse implements Response {
     @Override
     public Text beforeFirst(final Text text) {
         return this.text.beforeFirst(text);
+    }
+
+    @Override
+    public Text beforeLast(final Text text) {
+        return this.text.beforeLast(text);
     }
 }

@@ -26,14 +26,38 @@ public final class PlainText implements Text {
     }
 
     @Override
+    public Text afterFirst(final Text text) {
+        return this.substring(
+                this.text.indexOf(text.asString()) + text.asString().length(),
+                this.text.length()
+        );
+    }
+
+    private Text substring(final Integer begin, final Integer end) {
+        return new PlainText(this.text.substring(begin, end));
+    }
+
+    @Override
     public Text afterLast(final Text text) {
-        var i = this.text.lastIndexOf(text.asString());
-        return new PlainText(this.text.substring(i + text.asString().length()));
+        return this.substring(
+                this.text.lastIndexOf(text.asString()) + text.asString().length(),
+                this.text.length()
+        );
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        var i = this.text.indexOf(text.asString());
-        return new PlainText(this.text.substring(0, i));
+        return this.substring(
+                0,
+                this.text.indexOf(text.asString())
+        );
+    }
+
+    @Override
+    public Text beforeLast(final Text text) {
+        return this.substring(
+                0,
+                this.text.lastIndexOf(text.asString())
+        );
     }
 }

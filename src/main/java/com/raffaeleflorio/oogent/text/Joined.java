@@ -30,7 +30,12 @@ public final class Joined implements Text {
 
     @Override
     public Boolean contains(final Text text) {
-        return this.asString().contains(text.asString());
+        return new PlainText(this.asString()).contains(text);
+    }
+
+    @Override
+    public Text afterFirst(final Text text) {
+        return new PlainText(this.asString()).afterFirst(text);
     }
 
     @Override
@@ -41,5 +46,10 @@ public final class Joined implements Text {
     @Override
     public Text beforeFirst(final Text text) {
         return new PlainText(this.asString()).beforeFirst(text);
+    }
+
+    @Override
+    public Text beforeLast(final Text text) {
+        return new PlainText(this.asString()).beforeLast(text);
     }
 }

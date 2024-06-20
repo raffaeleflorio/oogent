@@ -8,7 +8,11 @@ public interface Text {
 
     Boolean contains(Text text);
 
+    Text afterFirst(Text text);
+
     Text afterLast(Text text);
 
     Text beforeFirst(Text text);
+
+    Text beforeLast(Text text);
 }

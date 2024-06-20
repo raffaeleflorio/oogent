@@ -42,6 +42,11 @@ public final class AiMessage implements Message {
     }
 
     @Override
+    public Text afterFirst(final Text text) {
+        return this.message.afterFirst(text);
+    }
+
+    @Override
     public Text afterLast(final Text text) {
         return this.message.afterLast(text);
     }
@@ -49,5 +54,10 @@ public final class AiMessage implements Message {
     @Override
     public Text beforeFirst(final Text text) {
         return this.message.beforeFirst(text);
+    }
+
+    @Override
+    public Text beforeLast(final Text text) {
+        return this.message.beforeLast(text);
     }
 }
