@@ -224,12 +224,13 @@ public static void main(final String[] args) {
     var agent = new ReActAgent(
             new L4JLLM(chatLanguageModel),
             new L4JPromptTemplate("""
-                    Answer the given request as best as possible. You could use the following tools as helpers:
+                    Answer the given request. You have access to the following tools:
                     {{actions}}
                                             
                     The format you have to follow is:
-                    Thought: a thought about what you need to do.
-                    Tool: a tool you need to use to process the request. Omit this step if you don't need to use a tool. Don't write None or other words. You just need to omit it when you don't need it.
+                    Request: the request to answer.
+                    Thought: a thought about what you need to do to answer the request.
+                    Tool: one of the above tool you need to use.
                     Input: the input to the previous tool.
                     Output: the output of the previous tool.
                     ... other N Thought and Tool
@@ -237,6 +238,7 @@ public static void main(final String[] args) {
                     Answer: the answer
                                        
                     It's really important to follow the aforesaid format. You don't need to prepend or append nothing.
+                                            
                     Let's begin!
                                
                     Request: {{text}}                             
