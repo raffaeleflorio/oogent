@@ -179,8 +179,8 @@ public static void main(final String[] args) {
             new IfAgent(
                     text -> text.asString().toLowerCase().contains("rephrase:"),
                     new ChainAgent(
-                            new RegexAgent(
-                                    Pattern.compile("Rephrase:", Pattern.CASE_INSENSITIVE)
+                            new FunctionAgent(
+                                    text -> new SimpleResponse(text.afterLast(new SimpleText("Rephrase:")))
                             ),
                             new RAGAgent(
                                     new FnMapStorage(

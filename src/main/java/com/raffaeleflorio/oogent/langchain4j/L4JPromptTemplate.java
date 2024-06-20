@@ -7,19 +7,19 @@ import com.raffaeleflorio.oogent.simple.SimpleText;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public final class Langchain4JPromptTemplate implements PromptTemplate {
+public final class L4JPromptTemplate implements PromptTemplate {
 
     private final dev.langchain4j.model.input.PromptTemplate promptTemplate;
 
-    public Langchain4JPromptTemplate(final String promptTemplate) {
+    public L4JPromptTemplate(final String promptTemplate) {
         this(new SimpleText(promptTemplate));
     }
 
-    public Langchain4JPromptTemplate(final Text promptTemplate) {
+    public L4JPromptTemplate(final Text promptTemplate) {
         this(dev.langchain4j.model.input.PromptTemplate.from(promptTemplate.asString()));
     }
 
-    public Langchain4JPromptTemplate(final dev.langchain4j.model.input.PromptTemplate promptTemplate) {
+    public L4JPromptTemplate(final dev.langchain4j.model.input.PromptTemplate promptTemplate) {
         this.promptTemplate = promptTemplate;
     }
 
