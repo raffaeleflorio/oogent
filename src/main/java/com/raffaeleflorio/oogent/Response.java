@@ -2,6 +2,8 @@ package com.raffaeleflorio.oogent;
 
 public interface Response extends Text {
 
+    Sources sources();
+
     @Override
     Response then(Text text);
 

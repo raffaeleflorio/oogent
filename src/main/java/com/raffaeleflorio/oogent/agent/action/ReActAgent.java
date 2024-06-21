@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 public final class ReActAgent implements Agent {
 
+    // TODO: refactor
+
     private final LLM llm;
     private final PromptTemplate promptTemplate;
     private final Function<Action, Text> actionFn;
