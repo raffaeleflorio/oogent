@@ -2,10 +2,12 @@ package com.raffaeleflorio.oogent.text.source;
 
 import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
+import com.raffaeleflorio.oogent.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public final class EmptySources implements Sources {
 
@@ -32,6 +34,16 @@ public final class EmptySources implements Sources {
     @Override
     public Sources merged(final Sources sources) {
         return this.origin.merged(sources);
+    }
+
+    @Override
+    public Optional<Source> source(final Text id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Boolean contains(final Text id) {
+        return false;
     }
 
     @NotNull
