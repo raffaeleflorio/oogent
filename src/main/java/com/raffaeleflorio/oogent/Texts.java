@@ -2,7 +2,7 @@ package com.raffaeleflorio.oogent;
 
 public interface Texts extends Iterable<Text> {
 
-    Texts then(Text text); // TODO: mhn...
+    Texts then(Text text);
 
     Text joined(Text delimiter);
 
