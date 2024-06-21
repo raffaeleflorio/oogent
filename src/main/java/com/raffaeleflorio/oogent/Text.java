@@ -16,5 +16,7 @@ public interface Text {
 
     Text beforeLast(Text text);
 
+    Boolean startsWith(Text prefix);
+
     Boolean empty();
 }

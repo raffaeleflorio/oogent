@@ -62,6 +62,11 @@ public final class PlainText implements Text {
     }
 
     @Override
+    public Boolean startsWith(final Text prefix) {
+        return this.text.startsWith(prefix.asString());
+    }
+
+    @Override
     public Boolean empty() {
         return this.text.isBlank();
     }

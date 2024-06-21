@@ -62,6 +62,11 @@ public final class AiMessage implements Message {
     }
 
     @Override
+    public Boolean startsWith(final Text prefix) {
+        return this.message.startsWith(prefix);
+    }
+
+    @Override
     public Boolean empty() {
         return this.message.empty();
     }

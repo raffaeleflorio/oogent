@@ -52,6 +52,11 @@ public final class Listed implements Text {
     }
 
     @Override
+    public Boolean startsWith(final Text prefix) {
+        return this.origin.startsWith(prefix);
+    }
+
+    @Override
     public Boolean empty() {
         return this.origin.empty();
     }

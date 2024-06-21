@@ -65,6 +65,11 @@ public final class TextResponse implements Response {
     }
 
     @Override
+    public Boolean startsWith(final Text prefix) {
+        return this.text.startsWith(prefix);
+    }
+
+    @Override
     public Boolean empty() {
         return this.text.empty();
     }

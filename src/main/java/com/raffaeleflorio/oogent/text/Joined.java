@@ -54,6 +54,11 @@ public final class Joined implements Text {
     }
 
     @Override
+    public Boolean startsWith(final Text prefix) {
+        return this.asString().startsWith(prefix.asString());
+    }
+
+    @Override
     public Boolean empty() {
         return this.texts.stream().allMatch(Text::empty);
     }
