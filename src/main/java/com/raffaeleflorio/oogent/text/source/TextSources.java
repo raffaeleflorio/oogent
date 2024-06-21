@@ -6,12 +6,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public final class TextSources implements Sources {
 
     private final Collection<Source> sources;
+
+    public TextSources(final Source source) {
+        this(List.of(source));
+    }
 
     public TextSources(final Collection<Source> sources) {
         this.sources = sources;
