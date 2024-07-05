@@ -39,7 +39,7 @@ final class InMemoryConversation implements Conversation {
     }
 
     @Override
-    public Conversation with(final Message message) {
+    public Conversation then(final Message message) {
         return new InMemoryConversation(
                 this.id,
                 Stream.concat(this.messages.stream(), Stream.of(message)).toList()

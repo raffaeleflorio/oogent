@@ -4,7 +4,7 @@ public interface Conversation {
 
     Text id();
 
-    Conversation with(Message message);
+    Conversation then(Message message);
 
     Texts asTexts(Text humanId, Text aiId);
 
