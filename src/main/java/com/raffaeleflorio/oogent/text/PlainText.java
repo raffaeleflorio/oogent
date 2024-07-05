@@ -27,10 +27,14 @@ public final class PlainText implements Text {
 
     @Override
     public Text afterFirst(final Text text) {
-        return this.substring(
-                this.text.indexOf(text.asString()) + text.asString().length(),
-                this.text.length()
-        );
+        var offset = text.asString().length();
+        var begin = this.text.indexOf(text.asString()) + offset;
+        if (begin < offset) {
+            throw new IllegalArgumentException(
+                    "I'm unable to build the text after the first occurrence of the given text. It's missing"
+            );
+        }
+        return this.substring(begin, this.text.length());
     }
 
     private Text substring(final Integer begin, final Integer end) {
@@ -39,26 +43,36 @@ public final class PlainText implements Text {
 
     @Override
     public Text afterLast(final Text text) {
-        return this.substring(
-                this.text.lastIndexOf(text.asString()) + text.asString().length(),
-                this.text.length()
-        );
+        var offset = text.asString().length();
+        var begin = this.text.lastIndexOf(text.asString()) + offset;
+        if (begin < offset) {
+            throw new IllegalArgumentException(
+                    "I'm unable to build the text after the last occurrence of the given text. It's missing"
+            );
+        }
+        return this.substring(begin, this.text.length());
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return this.substring(
-                0,
-                this.text.indexOf(text.asString())
-        );
+        var end = this.text.indexOf(text.asString());
+        if (end == -1) {
+            throw new IllegalArgumentException(
+                    "I'm unable to build the text before the first occurrence of the given text. It's missing"
+            );
+        }
+        return this.substring(0, end);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return this.substring(
-                0,
-                this.text.lastIndexOf(text.asString())
-        );
+        var end = this.text.lastIndexOf(text.asString());
+        if (end == -1) {
+            throw new IllegalArgumentException(
+                    "I'm unable to build the text before the last occurrence of the given text. It's missing"
+            );
+        }
+        return this.substring(0, end);
     }
 
     @Override
