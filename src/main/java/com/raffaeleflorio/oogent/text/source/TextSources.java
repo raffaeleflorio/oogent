@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -55,8 +54,11 @@ public final class TextSources implements Sources {
     }
 
     @Override
-    public Optional<Source> source(final Text id) {
-        return Optional.ofNullable(this.sources.get(id.asString()));
+    public Source source(final Text id) {
+        return this.sources.getOrDefault(
+                id.asString(),
+                new MissingSource(id)
+        );
     }
 
     @Override

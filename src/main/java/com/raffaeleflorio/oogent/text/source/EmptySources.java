@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 public final class EmptySources implements Sources {
 
@@ -37,8 +36,8 @@ public final class EmptySources implements Sources {
     }
 
     @Override
-    public Optional<Source> source(final Text id) {
-        return Optional.empty();
+    public Source source(final Text id) {
+        return new MissingSource(id);
     }
 
     @Override
