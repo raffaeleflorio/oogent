@@ -1,12 +1,12 @@
 package com.raffaeleflorio.oogent;
 
-public interface Conversation {
+public interface Conversation extends Iterable<Message> {
 
     Text id();
 
     Conversation then(Message message);
 
-    Texts asTexts(Text humanId, Text aiId);
+    Text listed(Text humanId, Text aiId);
 
     Integer size();
 
