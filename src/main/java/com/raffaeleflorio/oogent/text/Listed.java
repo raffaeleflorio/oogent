@@ -8,7 +8,7 @@ public final class Listed implements Text {
 
     private final Text origin;
 
-    public Listed(final List<Text> texts) {
+    public Listed(final List<? extends Text> texts) {
         this(new Joined(texts, new PlainText("\n")));
     }
 

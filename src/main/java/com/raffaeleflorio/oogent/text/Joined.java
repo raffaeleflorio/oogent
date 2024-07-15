@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public final class Joined implements Text {
 
-    private final List<Text> texts;
+    private final List<? extends Text> texts;
     private final Text delimiter;
 
-    public Joined(final List<Text> texts, final Text delimiter) {
+    public Joined(final List<? extends Text> texts, final Text delimiter) {
         this.texts = texts;
         this.delimiter = delimiter;
     }
