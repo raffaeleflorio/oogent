@@ -8,7 +8,7 @@ public interface Sources extends Iterable<Source> {
 
     Sources merged(Sources sources);
 
-    Source source(Text id);
-
     Boolean contains(Text id);
+
+    Source source(Text id);
 }

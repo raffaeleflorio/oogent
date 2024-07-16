@@ -3,8 +3,8 @@ package com.raffaeleflorio.oogent.text.response;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.source.EmptySources;
 import com.raffaeleflorio.oogent.text.PlainText;
-import com.raffaeleflorio.oogent.text.source.EmptySources;
 
 public final class TextResponse implements Response {
 

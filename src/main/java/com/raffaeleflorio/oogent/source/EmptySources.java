@@ -1,4 +1,4 @@
-package com.raffaeleflorio.oogent.text.source;
+package com.raffaeleflorio.oogent.source;
 
 import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
@@ -36,13 +36,13 @@ public final class EmptySources implements Sources {
     }
 
     @Override
-    public Source source(final Text id) {
-        return new MissingSource(id);
+    public Boolean contains(final Text id) {
+        return false;
     }
 
     @Override
-    public Boolean contains(final Text id) {
-        return false;
+    public Source source(final Text id) {
+        return new MissingSource(id);
     }
 
     @NotNull

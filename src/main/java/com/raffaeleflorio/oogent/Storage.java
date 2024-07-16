@@ -2,5 +2,5 @@ package com.raffaeleflorio.oogent;
 
 public interface Storage {
 
-    Texts output(Text text);
+    Documents documents(Text text);
 }

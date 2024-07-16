@@ -20,7 +20,12 @@ public final class RAGAgent implements Agent {
     private final BiFunction<Text, Text, Response> responseFn;
 
     public RAGAgent(final Storage storage, final LLM llm, final PromptTemplate promptTemplate) {
-        this(storage, llm, promptTemplate, (text, context) -> new TextResponse(text));
+        this(
+                storage,
+                llm,
+                promptTemplate,
+                (text, context) -> new TextResponse(text)
+        );
     }
 
     public RAGAgent(
@@ -37,7 +42,7 @@ public final class RAGAgent implements Agent {
 
     @Override
     public Response response(final Text text) {
-        var context = this.storage.output(text).listed();
+        var context = this.storage.documents(text).listed(new PlainText("-"));
         var message = this.promptTemplate.prompt(this.variables(text, context));
         return this.responseFn.apply(this.llm.completion(message), context);
     }

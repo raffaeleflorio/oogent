@@ -1,4 +1,4 @@
-package com.raffaeleflorio.oogent.text.source;
+package com.raffaeleflorio.oogent.source;
 
 import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
@@ -53,12 +53,8 @@ public final class TextSources implements Sources {
         );
     }
 
-    @Override
-    public Source source(final Text id) {
-        return this.sources.getOrDefault(
-                id.asString(),
-                new MissingSource(id)
-        );
+    private Stream<Source> stream(final Sources sources) {
+        return StreamSupport.stream(sources.spliterator(), false);
     }
 
     @Override
@@ -66,8 +62,12 @@ public final class TextSources implements Sources {
         return this.sources.containsKey(id.asString());
     }
 
-    private Stream<Source> stream(final Sources sources) {
-        return StreamSupport.stream(sources.spliterator(), false);
+    @Override
+    public Source source(final Text id) {
+        return this.sources.getOrDefault(
+                id.asString(),
+                new MissingSource(id)
+        );
     }
 
     @NotNull

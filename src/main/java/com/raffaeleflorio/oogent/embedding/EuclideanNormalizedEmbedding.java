@@ -18,16 +18,16 @@ public final class EuclideanNormalizedEmbedding implements Embedding {
     }
 
     @Override
-    public List<Double> asList() {
+    public List<Double> values() {
         var norm = this.norm();
-        return this.origin.asList().stream().map(x -> x / norm).toList();
+        return this.origin.values().stream().map(x -> x / norm).toList();
 
     }
 
     private Double norm() {
         return Math.sqrt(
                 this.origin
-                        .asList()
+                        .values()
                         .stream()
                         .reduce(
                                 0.0,

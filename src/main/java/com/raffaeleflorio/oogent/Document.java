@@ -1,8 +1,10 @@
 package com.raffaeleflorio.oogent;
 
-public interface Source {
+public interface Document {
 
     Text id();
+
+    Double score();
 
     Text text();
 }

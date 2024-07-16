@@ -6,5 +6,5 @@ public interface Embedding {
 
     Integer dimension();
 
-    List<Double> asList();
+    List<Double> values();
 }

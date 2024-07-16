@@ -18,7 +18,7 @@ final class L4JEmbedding implements Embedding {
     }
 
     @Override
-    public List<Double> asList() {
+    public List<Double> values() {
         return this.embedding.vectorAsList().stream().map(Number::doubleValue).toList();
     }
 }
