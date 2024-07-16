@@ -4,5 +4,5 @@ public interface Storage {
 
     Documents documents(Text text);
 
-    void add(Text id, Text text);
+    void store(Text id, Text text);
 }
