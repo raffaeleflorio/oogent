@@ -10,13 +10,15 @@ import java.util.function.Predicate;
 
 public final class SwitchAgent implements Agent {
 
+    private final Agent defaultAgent;
     private final List<Case> cases;
 
-    public SwitchAgent(final Case... cases) {
-        this(Arrays.asList(cases));
+    public SwitchAgent(final Agent defaultAgent, final Case... cases) {
+        this(defaultAgent, Arrays.asList(cases));
     }
 
-    public SwitchAgent(final List<Case> cases) {
+    public SwitchAgent(final Agent defaultAgent, final List<Case> cases) {
+        this.defaultAgent = defaultAgent;
         this.cases = cases;
     }
 
@@ -28,16 +30,16 @@ public final class SwitchAgent implements Agent {
                 .findFirst()
                 .map(aCase -> aCase.agent)
                 .map(agent -> agent.response(text))
-                .orElseThrow(() -> new IllegalArgumentException("I'm unable to build a response. There should be a default case!"));
+                .orElseGet(() -> this.defaultAgent.response(text));
     }
 
     public final static class Case {
 
-        private final Predicate<Text> condition;
+        private final Predicate<? super Text> condition;
 
         private final Agent agent;
 
-        public Case(final Predicate<Text> condition, final Agent agent) {
+        public Case(final Predicate<? super Text> condition, final Agent agent) {
             this.condition = condition;
             this.agent = agent;
         }

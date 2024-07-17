@@ -1,0 +1,34 @@
+package com.raffaeleflorio.oogent.storage.document;
+
+import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.storage.Document;
+
+final class MissingDocument implements Document {
+
+    private final RuntimeException exception;
+
+    MissingDocument(final Text id) {
+        this(
+                new IllegalStateException("Missing document ".concat(id.asString()))
+        );
+    }
+
+    MissingDocument(final RuntimeException exception) {
+        this.exception = exception;
+    }
+
+    @Override
+    public Text id() {
+        throw this.exception;
+    }
+
+    @Override
+    public Text text() {
+        throw this.exception;
+    }
+
+    @Override
+    public Double score() {
+        throw this.exception;
+    }
+}

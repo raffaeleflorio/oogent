@@ -12,22 +12,28 @@ import java.util.function.BiFunction;
 
 public final class ChainAgent implements Agent {
 
-    private final List<Agent> chain;
-    private final BiFunction<Text, Sources, Response> responseFn;
+    private final List<? extends Agent> chain;
+    private final BiFunction<? super Text, ? super Sources, ? extends Response> responseFn;
 
     public ChainAgent(final Agent... chain) {
         this(Arrays.asList(chain));
     }
 
-    public ChainAgent(final List<Agent> chain) {
+    public ChainAgent(final List<? extends Agent> chain) {
         this(chain, TextResponse::new);
     }
 
-    public ChainAgent(final BiFunction<Text, Sources, Response> responseFn, final Agent... chain) {
+    public ChainAgent(
+            final BiFunction<? super Text, ? super Sources, ? extends Response> responseFn,
+            final Agent... chain
+    ) {
         this(Arrays.asList(chain), responseFn);
     }
 
-    public ChainAgent(final List<Agent> chain, final BiFunction<Text, Sources, Response> responseFn) {
+    public ChainAgent(
+            final List<? extends Agent> chain,
+            final BiFunction<? super Text, ? super Sources, ? extends Response> responseFn
+    ) {
         this.chain = chain;
         this.responseFn = responseFn;
     }

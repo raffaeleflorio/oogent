@@ -8,11 +8,11 @@ import java.util.function.Predicate;
 
 public final class IfAgent implements Agent {
 
-    private final Predicate<Text> condition;
+    private final Predicate<? super Text> condition;
     private final Agent trueAgent;
     private final Agent falseAgent;
 
-    public IfAgent(final Predicate<Text> condition, final Agent trueAgent, final Agent falseAgent) {
+    public IfAgent(final Predicate<? super Text> condition, final Agent trueAgent, final Agent falseAgent) {
         this.condition = condition;
         this.trueAgent = trueAgent;
         this.falseAgent = falseAgent;

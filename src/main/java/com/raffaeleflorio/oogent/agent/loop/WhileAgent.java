@@ -8,10 +8,10 @@ import java.util.function.Predicate;
 
 public final class WhileAgent implements Agent {
 
-    private final Predicate<Response> condition;
+    private final Predicate<? super Response> condition;
     private final Agent origin;
 
-    public WhileAgent(final Predicate<Response> condition, final Agent origin) {
+    public WhileAgent(final Predicate<? super Response> condition, final Agent origin) {
         this.condition = condition;
         this.origin = origin;
     }
