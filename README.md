@@ -190,7 +190,7 @@ public static void main(final String[] args) {
             new StorageAgent(
                     storage,
                     10,
-                    0d
+                    0.8d
             ),
             new L4JLLM(OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
             new L4JPromptTemplate("""
