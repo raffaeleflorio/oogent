@@ -1,7 +1,7 @@
 package com.raffaeleflorio.oogent.agent.conversational;
 
+import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.text.PlainText;
 
 public final class AiMessage implements Message {
 

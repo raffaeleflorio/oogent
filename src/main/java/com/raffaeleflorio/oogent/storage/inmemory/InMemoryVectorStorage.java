@@ -1,15 +1,14 @@
 package com.raffaeleflorio.oogent.storage.inmemory;
 
+import com.raffaeleflorio.oogent.Document;
+import com.raffaeleflorio.oogent.Documents;
+import com.raffaeleflorio.oogent.Embedding;
+import com.raffaeleflorio.oogent.EmbeddingModel;
+import com.raffaeleflorio.oogent.Storage;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.storage.Document;
-import com.raffaeleflorio.oogent.storage.Documents;
-import com.raffaeleflorio.oogent.storage.Embedding;
-import com.raffaeleflorio.oogent.storage.EmbeddingModel;
-import com.raffaeleflorio.oogent.storage.Storage;
-import com.raffaeleflorio.oogent.storage.document.TextDocument;
-import com.raffaeleflorio.oogent.storage.document.TextDocuments;
-import com.raffaeleflorio.oogent.storage.score.CosineSimilarityScore;
-import com.raffaeleflorio.oogent.text.PlainText;
+import com.raffaeleflorio.oogent.storage.CosineSimilarityScore;
+import com.raffaeleflorio.oogent.storage.TextDocument;
+import com.raffaeleflorio.oogent.storage.TextDocuments;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -58,7 +57,7 @@ public final class InMemoryVectorStorage implements Storage {
                         .entrySet()
                         .stream()
                         .<Document>map(entry -> new TextDocument(
-                                        new PlainText(entry.getKey()),
+                                        entry.getKey(),
                                         entry.getValue().text(),
                                         this.scoreFn.apply(entry.getValue().embedding(), x)
                                 )
@@ -74,7 +73,7 @@ public final class InMemoryVectorStorage implements Storage {
         this.map.put(
                 id.asString(),
                 new StoredText(
-                        text,
+                        text.asString(),
                         this.embeddingModel.embedding(text)
                 )
         );
@@ -90,6 +89,6 @@ public final class InMemoryVectorStorage implements Storage {
         this.map.remove(id.asString());
     }
 
-    private record StoredText(Text text, Embedding embedding) {
+    private record StoredText(String text, Embedding embedding) {
     }
 }

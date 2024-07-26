@@ -1,8 +1,8 @@
 package com.raffaeleflorio.oogent.agent.conversational;
 
+import com.raffaeleflorio.oogent.Listed;
+import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.text.Listed;
-import com.raffaeleflorio.oogent.text.PlainText;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;

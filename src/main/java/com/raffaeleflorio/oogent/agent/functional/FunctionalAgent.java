@@ -11,12 +11,6 @@ public final class FunctionalAgent implements Agent {
 
     private final Function<? super Text, ? extends Response> fn;
 
-    public FunctionalAgent(final Agent origin, final Function<? super Response, ? extends Response> fn) {
-        this(
-                text -> fn.apply(origin.response(text))
-        );
-    }
-
     public FunctionalAgent(final Supplier<? extends Response> supplier) {
         this(x -> supplier.get());
     }

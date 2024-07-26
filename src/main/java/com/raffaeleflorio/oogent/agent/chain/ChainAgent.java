@@ -4,7 +4,7 @@ import com.raffaeleflorio.oogent.Agent;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.text.response.TextResponse;
+import com.raffaeleflorio.oogent.agent.TextResponse;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.raffaeleflorio.oogent.agent.conversational;
 
 import com.raffaeleflorio.oogent.Agent;
+import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Text;
-import com.raffaeleflorio.oogent.text.PlainText;
-import com.raffaeleflorio.oogent.text.response.TextResponse;
+import com.raffaeleflorio.oogent.agent.TextResponse;
 
 import java.util.function.Function;
 
