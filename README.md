@@ -93,8 +93,6 @@ public static void main(final String[] args) {
 ## Conversational Agent
 
 ```java
-import com.raffaeleflorio.oogent.agent.prompt.PromptAgent;
-
 public static void main(final String[] args) {
     var chatLanguageModel = OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build();
     var conversation = new InMemoryConversation()
