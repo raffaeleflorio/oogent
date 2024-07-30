@@ -4,7 +4,12 @@ public interface Document {
 
     Text id();
 
-    Double score();
-
     Text text();
+
+    Chunks chunks();
+
+    interface Chunks extends Iterable<Text> {
+
+        Integer size();
+    }
 }

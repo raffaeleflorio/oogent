@@ -1,6 +1,7 @@
-package com.raffaeleflorio.oogent.storage;
+package com.raffaeleflorio.oogent.embedding.normalization;
 
 import com.raffaeleflorio.oogent.Embedding;
+import com.raffaeleflorio.oogent.embedding.EuclideanNorm;
 
 import java.util.List;
 

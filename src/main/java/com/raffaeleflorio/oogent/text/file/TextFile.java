@@ -1,4 +1,4 @@
-package com.raffaeleflorio.oogent.file;
+package com.raffaeleflorio.oogent.text.file;
 
 import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
@@ -10,32 +10,32 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public final class PlainTextFile implements Text {
+public final class TextFile implements Text {
 
     private final Path path;
     private final Charset charset;
 
-    public PlainTextFile(final Text path) {
+    public TextFile(final Text path) {
         this(path.asString());
     }
 
-    public PlainTextFile(final String path) {
+    public TextFile(final String path) {
         this(Path.of(path));
     }
 
-    public PlainTextFile(final Path path) {
+    public TextFile(final Path path) {
         this(path, StandardCharsets.UTF_8);
     }
 
-    public PlainTextFile(final Text path, final Charset charset) {
+    public TextFile(final Text path, final Charset charset) {
         this(path.asString(), charset);
     }
 
-    public PlainTextFile(final String path, final Charset charset) {
+    public TextFile(final String path, final Charset charset) {
         this(Path.of(path), charset);
     }
 
-    public PlainTextFile(final Path path, final Charset charset) {
+    public TextFile(final Path path, final Charset charset) {
         this.path = path;
         this.charset = charset;
     }

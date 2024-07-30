@@ -1,36 +1,27 @@
-package com.raffaeleflorio.oogent.file;
+package com.raffaeleflorio.oogent.text;
 
 import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
-import org.apache.pdfbox.Loader;
-import org.apache.pdfbox.text.PDFTextStripper;
 
-import java.io.IOException;
-import java.nio.file.Path;
+import java.util.Locale;
 
-public final class PDF implements Text {
+public final class Lowered implements Text {
 
-    private final Path path;
+    private final Text origin;
+    private final Locale locale;
 
-    public PDF(final Text path) {
-        this(path.asString());
+    public Lowered(final Text origin) {
+        this(origin, Locale.ENGLISH);
     }
 
-    public PDF(final String path) {
-        this(Path.of(path));
-    }
-
-    public PDF(final Path path) {
-        this.path = path;
+    public Lowered(final Text origin, final Locale locale) {
+        this.origin = origin;
+        this.locale = locale;
     }
 
     @Override
     public String asString() {
-        try (var doc = Loader.loadPDF(this.path.toFile())) {
-            return new PDFTextStripper().getText(doc);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return this.origin.asString().toLowerCase(this.locale);
     }
 
     @Override
@@ -40,7 +31,7 @@ public final class PDF implements Text {
 
     @Override
     public Boolean contains(final Text text) {
-        return new PlainText(this.asString()).contains(text);
+        return this.asString().contains(text.asString());
     }
 
     @Override
@@ -70,6 +61,6 @@ public final class PDF implements Text {
 
     @Override
     public Boolean empty() {
-        return this.asString().isEmpty();
+        return this.origin.empty();
     }
 }

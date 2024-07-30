@@ -1,4 +1,4 @@
-package com.raffaeleflorio.oogent.storage;
+package com.raffaeleflorio.oogent.embedding;
 
 import com.raffaeleflorio.oogent.Embedding;
 

@@ -2,9 +2,9 @@ package com.raffaeleflorio.oogent;
 
 public interface Storage {
 
-    Documents documents(Text text, Integer limit, Double minScore);
+    RelevantTexts relevantTexts(Text text, Double minScore, Integer limit);
 
-    void store(Text id, Text text);
+    void store(Document document);
 
     void clear();
 

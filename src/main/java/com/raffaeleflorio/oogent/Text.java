@@ -2,8 +2,6 @@ package com.raffaeleflorio.oogent;
 
 public interface Text {
 
-    String asString();
-
     Text then(Text text);
 
     Boolean contains(Text text);
@@ -17,6 +15,8 @@ public interface Text {
     Text beforeLast(Text text);
 
     Boolean startsWith(Text prefix);
+
+    String asString();
 
     Boolean empty();
 }

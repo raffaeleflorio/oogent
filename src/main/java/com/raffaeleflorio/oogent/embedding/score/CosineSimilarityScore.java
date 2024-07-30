@@ -1,6 +1,7 @@
-package com.raffaeleflorio.oogent.storage;
+package com.raffaeleflorio.oogent.embedding.score;
 
 import com.raffaeleflorio.oogent.Embedding;
+import com.raffaeleflorio.oogent.embedding.CosineSimilarity;
 
 import java.util.function.BiFunction;
 

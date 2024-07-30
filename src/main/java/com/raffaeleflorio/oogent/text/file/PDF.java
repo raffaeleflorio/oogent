@@ -1,24 +1,36 @@
-package com.raffaeleflorio.oogent;
+package com.raffaeleflorio.oogent.text.file;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.raffaeleflorio.oogent.PlainText;
+import com.raffaeleflorio.oogent.Text;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.text.PDFTextStripper;
 
-public final class Joined implements Text {
+import java.io.IOException;
+import java.nio.file.Path;
 
-    private final List<? extends Text> texts;
-    private final Text delimiter;
+public final class PDF implements Text {
 
-    public Joined(final List<? extends Text> texts, final Text delimiter) {
-        this.texts = texts;
-        this.delimiter = delimiter;
+    private final Path path;
+
+    public PDF(final Text path) {
+        this(path.asString());
+    }
+
+    public PDF(final String path) {
+        this(Path.of(path));
+    }
+
+    public PDF(final Path path) {
+        this.path = path;
     }
 
     @Override
     public String asString() {
-        return this.texts
-                .stream()
-                .map(Text::asString)
-                .collect(Collectors.joining(this.delimiter.asString()));
+        try (var doc = Loader.loadPDF(this.path.toFile())) {
+            return new PDFTextStripper().getText(doc);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -58,6 +70,6 @@ public final class Joined implements Text {
 
     @Override
     public Boolean empty() {
-        return this.texts.stream().allMatch(Text::empty);
+        return this.asString().isEmpty();
     }
 }

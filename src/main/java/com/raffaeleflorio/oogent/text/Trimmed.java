@@ -1,24 +1,19 @@
-package com.raffaeleflorio.oogent;
+package com.raffaeleflorio.oogent.text;
 
-import java.util.Locale;
+import com.raffaeleflorio.oogent.PlainText;
+import com.raffaeleflorio.oogent.Text;
 
-public final class Lowered implements Text {
+public final class Trimmed implements Text {
 
     private final Text origin;
-    private final Locale locale;
 
-    public Lowered(final Text origin) {
-        this(origin, Locale.ENGLISH);
-    }
-
-    public Lowered(final Text origin, final Locale locale) {
+    public Trimmed(final Text origin) {
         this.origin = origin;
-        this.locale = locale;
     }
 
     @Override
     public String asString() {
-        return this.origin.asString().toLowerCase(this.locale);
+        return this.origin.asString().trim();
     }
 
     @Override
@@ -58,6 +53,6 @@ public final class Lowered implements Text {
 
     @Override
     public Boolean empty() {
-        return this.origin.empty();
+        return this.asString().isEmpty();
     }
 }
