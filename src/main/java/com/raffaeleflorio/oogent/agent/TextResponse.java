@@ -34,8 +34,8 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Response then(final Text text) {
-        return new TextResponse(this.text.then(text), this.sources);
+    public Text then(final Text text) {
+        return this.text.then(text);
     }
 
     @Override
@@ -44,23 +44,23 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Response afterFirst(final Text text) {
-        return new TextResponse(this.text.afterFirst(text), this.sources);
+    public Text afterFirst(final Text text) {
+        return this.text.afterFirst(text);
     }
 
     @Override
-    public Response afterLast(final Text text) {
-        return new TextResponse(this.text.afterLast(text), this.sources);
+    public Text afterLast(final Text text) {
+        return this.text.afterLast(text);
     }
 
     @Override
-    public Response beforeFirst(final Text text) {
-        return new TextResponse(this.text.beforeFirst(text), this.sources);
+    public Text beforeFirst(final Text text) {
+        return this.text.beforeFirst(text);
     }
 
     @Override
-    public Response beforeLast(final Text text) {
-        return new TextResponse(this.text.beforeLast(text), this.sources);
+    public Text beforeLast(final Text text) {
+        return this.text.beforeLast(text);
     }
 
     @Override
