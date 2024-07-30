@@ -26,7 +26,13 @@ public final class TextSources implements Sources {
         this(
                 sources
                         .stream()
-                        .collect(Collectors.toMap(source -> source.id().asString(), Function.identity()))
+                        .collect(
+                                Collectors.toMap(
+                                        source -> source.id().asString(),
+                                        Function.identity(),
+                                        (left, ignored) -> left
+                                )
+                        )
         );
     }
 
