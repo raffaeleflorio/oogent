@@ -7,30 +7,23 @@ import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.agent.TextResponse;
 
-import java.util.function.Function;
-
 public final class PromptAgent implements Agent {
 
     private final LLM llm;
     private final PromptTemplate promptTemplate;
-    private final Function<? super LLM.Completion, ? extends Response> responseFn;
-
-    public PromptAgent(final LLM llm, final PromptTemplate promptTemplate) {
-        this(llm, promptTemplate, TextResponse::new);
-    }
 
     public PromptAgent(
             final LLM llm,
-            final PromptTemplate promptTemplate,
-            final Function<? super LLM.Completion, ? extends Response> responseFn
+            final PromptTemplate promptTemplate
     ) {
         this.llm = llm;
         this.promptTemplate = promptTemplate;
-        this.responseFn = responseFn;
     }
 
     @Override
     public Response response(final Text text) {
-        return this.responseFn.apply(this.llm.completion(this.promptTemplate.prompt(text)));
+        return new TextResponse(
+                this.llm.completion(this.promptTemplate.prompt(text))
+        );
     }
 }

@@ -13,7 +13,6 @@ public final class ConversationalAgent implements Agent {
     private final Conversation conversation;
     private final Text humanId;
     private final Text aiId;
-    private final Function<? super Text, ? extends Response> responseFn;
     private final Function<? super Text, ? extends Message> messageFn;
 
     public ConversationalAgent(final Conversation conversation, final String humanId, final String aiId) {
@@ -21,36 +20,33 @@ public final class ConversationalAgent implements Agent {
     }
 
     public ConversationalAgent(final Conversation conversation, final Text humanId, final Text aiId) {
-        this(conversation, humanId, aiId, TextResponse::new, HumanMessage::new);
+        this(conversation, humanId, aiId, HumanMessage::new);
     }
 
     public ConversationalAgent(
             final Conversation conversation,
             final String humanId,
             final String aiId,
-            final Function<? super Text, ? extends Response> responseFn,
             final Function<? super Text, ? extends Message> messageFn
     ) {
-        this(conversation, new PlainText(humanId), new PlainText(aiId), responseFn, messageFn);
+        this(conversation, new PlainText(humanId), new PlainText(aiId), messageFn);
     }
 
     public ConversationalAgent(
             final Conversation conversation,
             final Text humanId,
             final Text aiId,
-            final Function<? super Text, ? extends Response> responseFn,
             final Function<? super Text, ? extends Message> messageFn
     ) {
         this.conversation = conversation;
         this.humanId = humanId;
         this.aiId = aiId;
-        this.responseFn = responseFn;
         this.messageFn = messageFn;
     }
 
     @Override
     public Response response(final Text text) {
-        return this.responseFn.apply(
+        return new TextResponse(
                 this.conversation
                         .then(this.messageFn.apply(text))
                         .listed(this.humanId, this.aiId)
