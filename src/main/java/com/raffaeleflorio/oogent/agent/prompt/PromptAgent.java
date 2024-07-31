@@ -13,7 +13,7 @@ public final class PromptAgent implements Agent {
 
     private final LLM llm;
     private final PromptTemplate promptTemplate;
-    private final Function<? super Text, ? extends Response> responseFn;
+    private final Function<? super LLM.Completion, ? extends Response> responseFn;
 
     public PromptAgent(final LLM llm, final PromptTemplate promptTemplate) {
         this(llm, promptTemplate, TextResponse::new);
@@ -22,7 +22,7 @@ public final class PromptAgent implements Agent {
     public PromptAgent(
             final LLM llm,
             final PromptTemplate promptTemplate,
-            final Function<? super Text, ? extends Response> responseFn
+            final Function<? super LLM.Completion, ? extends Response> responseFn
     ) {
         this.llm = llm;
         this.promptTemplate = promptTemplate;

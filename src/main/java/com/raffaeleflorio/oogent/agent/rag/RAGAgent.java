@@ -17,7 +17,7 @@ public final class RAGAgent implements Agent {
     private final Agent contextAgent;
     private final LLM llm;
     private final PromptTemplate promptTemplate;
-    private final BiFunction<? super Text, ? super Sources, ? extends Response> responseFn;
+    private final BiFunction<? super LLM.Completion, ? super Sources, ? extends Response> responseFn;
 
     public RAGAgent(
             final Agent contextAgent,
@@ -36,7 +36,7 @@ public final class RAGAgent implements Agent {
             final Agent contextAgent,
             final LLM llm,
             final PromptTemplate promptTemplate,
-            final BiFunction<? super Text, ? super Sources, ? extends Response> responseFn
+            final BiFunction<? super LLM.Completion, ? super Sources, ? extends Response> responseFn
     ) {
         this.contextAgent = contextAgent;
         this.llm = llm;

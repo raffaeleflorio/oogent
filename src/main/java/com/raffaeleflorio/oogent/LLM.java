@@ -2,5 +2,10 @@ package com.raffaeleflorio.oogent;
 
 public interface LLM {
 
-    Text completion(Text text);
+    Completion completion(Text text);
+
+    interface Completion extends Text {
+
+        TokenUsage tokenUsage();
+    }
 }
