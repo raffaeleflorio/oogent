@@ -36,9 +36,4 @@ public final class SingleChunk implements Document.Chunks {
             }
         };
     }
-
-    @Override
-    public Integer size() {
-        return 1;
-    }
 }

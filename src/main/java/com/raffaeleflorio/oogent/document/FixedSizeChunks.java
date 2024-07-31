@@ -22,7 +22,7 @@ public final class FixedSizeChunks implements Document.Chunks {
     @Override
     public Iterator<Text> iterator() {
         var textAsString = this.text.asString();
-        return IntStream.range(0, this.size())
+        return IntStream.range(0, this.chunksCount(textAsString))
                 .mapToObj(i -> textAsString.substring(
                                 i * this.size,
                                 Math.min((i + 1) * this.size, textAsString.length())
@@ -32,8 +32,7 @@ public final class FixedSizeChunks implements Document.Chunks {
                 .iterator();
     }
 
-    @Override
-    public Integer size() {
-        return Math.ceilDiv(this.text.asString().length(), this.size);
+    private Integer chunksCount(final String string) {
+        return Math.ceilDiv(string.length(), this.size);
     }
 }

@@ -9,7 +9,5 @@ public interface Document {
     Chunks chunks();
 
     interface Chunks extends Iterable<Text> {
-
-        Integer size();
     }
 }
