@@ -22,6 +22,14 @@ public final class TextResponse implements Response {
 
     public TextResponse(final Text text, final Sources sources) {
         this(
+                text,
+                sources,
+                new ZeroTokenUsage()
+        );
+    }
+
+    public TextResponse(final Text text, final Sources sources, TokenUsage tokenUsage) {
+        this(
                 new LLM.Completion() {
                     @Override
                     public Text text() {
@@ -30,7 +38,7 @@ public final class TextResponse implements Response {
 
                     @Override
                     public TokenUsage tokenUsage() {
-                        return new ZeroTokenUsage();
+                        return tokenUsage;
                     }
                 },
                 sources
