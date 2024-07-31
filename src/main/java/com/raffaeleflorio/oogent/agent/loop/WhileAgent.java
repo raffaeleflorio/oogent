@@ -3,6 +3,7 @@ package com.raffaeleflorio.oogent.agent.loop;
 import com.raffaeleflorio.oogent.Agent;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.agent.TextResponse;
 
 import java.util.function.Predicate;
 
@@ -19,9 +20,11 @@ public final class WhileAgent implements Agent {
     @Override
     public Response response(final Text text) {
         var result = this.origin.response(text);
+        var tokenUsage = result.tokenUsage();
         while (this.condition.test(result)) {
             result = this.origin.response(text);
+            tokenUsage = tokenUsage.sum(result.tokenUsage());
         }
-        return result;
+        return new TextResponse(result, result.sources(), tokenUsage);
     }
 }
