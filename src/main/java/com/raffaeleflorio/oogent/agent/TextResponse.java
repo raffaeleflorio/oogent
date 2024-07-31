@@ -1,13 +1,15 @@
 package com.raffaeleflorio.oogent.agent;
 
+import com.raffaeleflorio.oogent.LLM;
 import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
+import com.raffaeleflorio.oogent.TokenUsage;
 
 public final class TextResponse implements Response {
 
-    private final Text text;
+    private final LLM.Completion completion;
     private final Sources sources;
 
     public TextResponse(final String text) {
@@ -19,7 +21,31 @@ public final class TextResponse implements Response {
     }
 
     public TextResponse(final Text text, final Sources sources) {
-        this.text = text;
+        this(
+                new LLM.Completion() {
+                    @Override
+                    public Text text() {
+                        return text;
+                    }
+
+                    @Override
+                    public TokenUsage tokenUsage() {
+                        return new ZeroTokenUsage();
+                    }
+                },
+                sources
+        );
+    }
+
+    public TextResponse(final LLM.Completion completion) {
+        this(
+                completion,
+                new EmptySources()
+        );
+    }
+
+    public TextResponse(final LLM.Completion completion, final Sources sources) {
+        this.completion = completion;
         this.sources = sources;
     }
 
@@ -29,47 +55,52 @@ public final class TextResponse implements Response {
     }
 
     @Override
+    public TokenUsage tokenUsage() {
+        return this.completion.tokenUsage();
+    }
+
+    @Override
     public String asString() {
-        return this.text.asString();
+        return this.completion.text().asString();
     }
 
     @Override
     public Text then(final Text text) {
-        return this.text.then(text);
+        return this.completion.text().then(text);
     }
 
     @Override
     public Boolean contains(final Text text) {
-        return this.text.contains(text);
+        return this.completion.text().contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return this.text.afterFirst(text);
+        return this.completion.text().afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return this.text.afterLast(text);
+        return this.completion.text().afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return this.text.beforeFirst(text);
+        return this.completion.text().beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return this.text.beforeLast(text);
+        return this.completion.text().beforeLast(text);
     }
 
     @Override
     public Boolean startsWith(final Text prefix) {
-        return this.text.startsWith(prefix);
+        return this.completion.text().startsWith(prefix);
     }
 
     @Override
     public Boolean empty() {
-        return this.text.empty();
+        return this.completion.text().empty();
     }
 }

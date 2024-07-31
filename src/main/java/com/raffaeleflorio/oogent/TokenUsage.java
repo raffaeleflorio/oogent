@@ -6,5 +6,9 @@ public interface TokenUsage {
 
     Integer output();
 
-    Integer total();
+    TokenUsage sum(TokenUsage other);
+
+    default Integer total() {
+        return this.input() + this.output();
+    }
 }

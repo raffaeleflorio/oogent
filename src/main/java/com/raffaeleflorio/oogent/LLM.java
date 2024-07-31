@@ -4,7 +4,9 @@ public interface LLM {
 
     Completion completion(Text text);
 
-    interface Completion extends Text {
+    interface Completion {
+
+        Text text();
 
         TokenUsage tokenUsage();
     }

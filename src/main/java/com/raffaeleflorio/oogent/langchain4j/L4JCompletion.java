@@ -16,71 +16,12 @@ final class L4JCompletion implements LLM.Completion {
     }
 
     @Override
-    public TokenUsage tokenUsage() {
-        return new TokenUsage() {
-            @Override
-            public Integer input() {
-                return L4JCompletion.this.response.tokenUsage().inputTokenCount();
-            }
-
-            @Override
-            public Integer output() {
-                return L4JCompletion.this.response.tokenUsage().outputTokenCount();
-            }
-
-            @Override
-            public Integer total() {
-                return L4JCompletion.this.response.tokenUsage().totalTokenCount();
-            }
-        };
-    }
-
-    @Override
-    public Text then(final Text text) {
-        return this.asText().then(text);
-    }
-
-    private Text asText() {
+    public Text text() {
         return new PlainText(this.response.content().text());
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.asText().contains(text);
-    }
-
-    @Override
-    public Text afterFirst(final Text text) {
-        return this.asText().afterFirst(text);
-    }
-
-    @Override
-    public Text afterLast(final Text text) {
-        return this.asText().afterLast(text);
-    }
-
-    @Override
-    public Text beforeFirst(final Text text) {
-        return this.asText().beforeFirst(text);
-    }
-
-    @Override
-    public Text beforeLast(final Text text) {
-        return this.asText().beforeLast(text);
-    }
-
-    @Override
-    public Boolean startsWith(final Text prefix) {
-        return this.asText().startsWith(prefix);
-    }
-
-    @Override
-    public String asString() {
-        return this.asText().asString();
-    }
-
-    @Override
-    public Boolean empty() {
-        return this.asText().empty();
+    public TokenUsage tokenUsage() {
+        return new L4JTokenUsage(this.response.tokenUsage());
     }
 }
