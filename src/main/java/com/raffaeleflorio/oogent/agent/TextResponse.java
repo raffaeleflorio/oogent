@@ -9,11 +9,16 @@ import com.raffaeleflorio.oogent.TokenUsage;
 
 public final class TextResponse implements Response {
 
-    private final LLM.Completion completion;
+    private final Text text;
     private final Sources sources;
+    private final TokenUsage tokenUsage;
 
     public TextResponse(final String text) {
         this(new PlainText(text));
+    }
+
+    public TextResponse(final LLM.Completion completion) {
+        this(completion.text());
     }
 
     public TextResponse(final Text text) {
@@ -28,33 +33,18 @@ public final class TextResponse implements Response {
         );
     }
 
-    public TextResponse(final Text text, final Sources sources, TokenUsage tokenUsage) {
-        this(
-                new LLM.Completion() {
-                    @Override
-                    public Text text() {
-                        return text;
-                    }
-
-                    @Override
-                    public TokenUsage tokenUsage() {
-                        return tokenUsage;
-                    }
-                },
-                sources
-        );
-    }
-
-    public TextResponse(final LLM.Completion completion) {
-        this(
-                completion,
-                new EmptySources()
-        );
-    }
-
     public TextResponse(final LLM.Completion completion, final Sources sources) {
-        this.completion = completion;
+        this(
+                completion.text(),
+                sources,
+                completion.tokenUsage()
+        );
+    }
+
+    public TextResponse(final Text text, final Sources sources, TokenUsage tokenUsage) {
+        this.text = text;
         this.sources = sources;
+        this.tokenUsage = tokenUsage;
     }
 
     @Override
@@ -64,61 +54,61 @@ public final class TextResponse implements Response {
 
     @Override
     public TokenUsage tokenUsage() {
-        return this.completion.tokenUsage();
+        return this.tokenUsage;
     }
 
     @Override
     public Text then(final Text text) {
-        return this.completion.text().then(text);
+        return this.text.then(text);
     }
 
     @Override
     public Boolean contains(final Text text) {
-        return this.completion.text().contains(text);
+        return this.text.contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return this.completion.text().afterFirst(text);
+        return this.text.afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return this.completion.text().afterLast(text);
+        return this.text.afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return this.completion.text().beforeFirst(text);
+        return this.text.beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return this.completion.text().beforeLast(text);
+        return this.text.beforeLast(text);
     }
 
     @Override
     public Boolean startsWith(final Text prefix) {
-        return this.completion.text().startsWith(prefix);
+        return this.text.startsWith(prefix);
     }
 
     @Override
     public Boolean blank() {
-        return this.completion.text().blank();
+        return this.text.blank();
     }
 
     @Override
     public Integer size() {
-        return this.completion.text().size();
+        return this.text.size();
     }
 
     @Override
     public Text sub(final Integer start, final Integer endExcluded) {
-        return this.completion.text().sub(start, endExcluded);
+        return this.text.sub(start, endExcluded);
     }
 
     @Override
     public String asString() {
-        return this.completion.text().asString();
+        return this.text.asString();
     }
 }
