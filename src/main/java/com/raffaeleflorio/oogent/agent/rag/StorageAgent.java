@@ -27,7 +27,7 @@ public final class StorageAgent implements Agent {
                 minScore,
                 limit,
                 relevantTexts -> new TextResponse(
-                        relevantTexts.listed(new PlainText("-")),
+                        relevantTexts.listed(new PlainText("- ")),
                         new RelevantTextsSources(relevantTexts)
                 )
         );

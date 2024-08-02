@@ -24,7 +24,12 @@ final class InMemoryRelevantTexts implements RelevantTexts {
 
     @Override
     public Text listed(final Text prefix) {
-        return new Listed(this.relevantTexts);
+        return new Listed(
+                this.relevantTexts
+                        .stream()
+                        .map(prefix::then)
+                        .toList()
+        );
     }
 
     @NotNull
