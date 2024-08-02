@@ -1,6 +1,6 @@
 package com.raffaeleflorio.oogent.storage.inmemory;
 
-import com.raffaeleflorio.oogent.PlainText;
+import com.raffaeleflorio.oogent.Listed;
 import com.raffaeleflorio.oogent.RelevantText;
 import com.raffaeleflorio.oogent.RelevantTexts;
 import com.raffaeleflorio.oogent.Text;
@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
 
 final class InMemoryRelevantTexts implements RelevantTexts {
 
@@ -25,13 +24,7 @@ final class InMemoryRelevantTexts implements RelevantTexts {
 
     @Override
     public Text listed(final Text prefix) {
-        return this.relevantTexts
-                .stream()
-                .<Text>map(Function.identity())
-                .reduce(
-                        new PlainText(""),
-                        (left, right) -> left.then(prefix).then(right)
-                );
+        return new Listed(this.relevantTexts);
     }
 
     @NotNull

@@ -1,5 +1,6 @@
 package com.raffaeleflorio.oogent.agent.conversational;
 
+import com.raffaeleflorio.oogent.Listed;
 import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
 import org.jetbrains.annotations.NotNull;
@@ -47,13 +48,12 @@ public final class InMemoryConversation implements Conversation {
 
     @Override
     public Text listed(final Text humanId, final Text aiId) {
-        return this.messages
-                .stream()
-                .map(message -> message.human() ? humanId.then(message) : aiId.then(message))
-                .reduce(
-                        new PlainText(""),
-                        (left, right) -> left.then(new PlainText("\n")).then(right)
-                );
+        return new Listed(
+                this.messages
+                        .stream()
+                        .map(message -> message.human() ? humanId.then(message) : aiId.then(message))
+                        .toList()
+        );
     }
 
     @Override
