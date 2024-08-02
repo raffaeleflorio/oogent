@@ -73,12 +73,22 @@ final class InMemoryRelevantText implements RelevantText {
     }
 
     @Override
-    public String asString() {
-        return this.text.asString();
+    public Boolean blank() {
+        return this.text.blank();
     }
 
     @Override
-    public Boolean empty() {
-        return this.text.empty();
+    public Integer size() {
+        return this.text.size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.text.sub(start, endExcluded);
+    }
+
+    @Override
+    public String asString() {
+        return this.text.asString();
     }
 }

@@ -14,6 +14,15 @@ public final class Joined implements Text {
     }
 
     @Override
+    public Text then(final Text text) {
+        return this.joined().then(text);
+    }
+
+    private Text joined() {
+        return new PlainText(this.asString());
+    }
+
+    @Override
     public String asString() {
         return this.texts
                 .stream()
@@ -22,42 +31,47 @@ public final class Joined implements Text {
     }
 
     @Override
-    public Text then(final Text text) {
-        return new PlainText(this.asString()).then(text);
-    }
-
-    @Override
     public Boolean contains(final Text text) {
-        return new PlainText(this.asString()).contains(text);
+        return this.joined().contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return new PlainText(this.asString()).afterFirst(text);
+        return this.joined().afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return new PlainText(this.asString()).afterLast(text);
+        return this.joined().afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return new PlainText(this.asString()).beforeFirst(text);
+        return this.joined().beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return new PlainText(this.asString()).beforeLast(text);
+        return this.joined().beforeLast(text);
     }
 
     @Override
     public Boolean startsWith(final Text prefix) {
-        return this.asString().startsWith(prefix.asString());
+        return this.joined().startsWith(prefix);
     }
 
     @Override
-    public Boolean empty() {
-        return this.texts.stream().allMatch(Text::empty);
+    public Boolean blank() {
+        return this.texts.stream().allMatch(Text::blank);
+    }
+
+    @Override
+    public Integer size() {
+        return this.joined().size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.joined().sub(start, endExcluded);
     }
 }

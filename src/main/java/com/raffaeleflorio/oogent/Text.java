@@ -16,7 +16,11 @@ public interface Text {
 
     Boolean startsWith(Text prefix);
 
-    String asString();
+    Boolean blank();
 
-    Boolean empty();
+    Integer size();
+
+    Text sub(Integer start, Integer endExcluded);
+
+    String asString();
 }

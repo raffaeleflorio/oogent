@@ -26,11 +26,6 @@ public final class AiMessage implements Message {
     }
 
     @Override
-    public String asString() {
-        return this.message.asString();
-    }
-
-    @Override
     public Message then(final Text text) {
         return new AiMessage(this.message.then(text));
     }
@@ -66,7 +61,22 @@ public final class AiMessage implements Message {
     }
 
     @Override
-    public Boolean empty() {
-        return this.message.empty();
+    public Boolean blank() {
+        return this.message.blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.message.size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.message.sub(start, endExcluded);
+    }
+
+    @Override
+    public String asString() {
+        return this.message.asString();
     }
 }

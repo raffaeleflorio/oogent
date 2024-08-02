@@ -20,47 +20,61 @@ public final class Lowered implements Text {
     }
 
     @Override
+    public Text then(final Text text) {
+        return this.lowered().then(text);
+    }
+
+    private Text lowered() {
+        return new PlainText(this.asString());
+    }
+
+    @Override
     public String asString() {
         return this.origin.asString().toLowerCase(this.locale);
     }
 
     @Override
-    public Text then(final Text text) {
-        return new PlainText(this.asString()).then(text);
-    }
-
-    @Override
     public Boolean contains(final Text text) {
-        return this.asString().contains(text.asString());
+        return this.lowered().contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return new PlainText(this.asString()).afterFirst(text);
+        return this.lowered().afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return new PlainText(this.asString()).afterLast(text);
+        return this.lowered().afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return new PlainText(this.asString()).beforeFirst(text);
+        return this.lowered().beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return new PlainText(this.asString()).beforeLast(text);
+        return this.lowered().beforeLast(text);
     }
 
     @Override
     public Boolean startsWith(final Text prefix) {
-        return this.asString().startsWith(prefix.asString());
+        return this.lowered().startsWith(prefix);
     }
 
     @Override
-    public Boolean empty() {
-        return this.origin.empty();
+    public Boolean blank() {
+        return this.lowered().blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.lowered().size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.lowered().sub(start, endExcluded);
     }
 }

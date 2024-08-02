@@ -1,7 +1,6 @@
 package com.raffaeleflorio.oogent.document;
 
 import com.raffaeleflorio.oogent.Document;
-import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,18 +20,17 @@ public final class FixedSizeChunks implements Document.Chunks {
     @NotNull
     @Override
     public Iterator<Text> iterator() {
-        var textAsString = this.text.asString();
-        return IntStream.range(0, this.chunksCount(textAsString))
-                .mapToObj(i -> textAsString.substring(
+        var textSize = this.text.size();
+        return IntStream.range(0, this.chunksCount(textSize))
+                .mapToObj(i -> this.text.sub(
                                 i * this.size,
-                                Math.min((i + 1) * this.size, textAsString.length())
+                                Math.min((i + 1) * this.size, textSize)
                         )
                 )
-                .<Text>map(PlainText::new)
                 .iterator();
     }
 
-    private Integer chunksCount(final String string) {
-        return Math.ceilDiv(string.length(), this.size);
+    private Integer chunksCount(final Integer textSize) {
+        return Math.ceilDiv(textSize, this.size);
     }
 }

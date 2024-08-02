@@ -41,6 +41,15 @@ public final class TextFile implements Text {
     }
 
     @Override
+    public Text then(final Text text) {
+        return this.fileText().then(text);
+    }
+
+    private Text fileText() {
+        return new PlainText(this.asString());
+    }
+
+    @Override
     public String asString() {
         try {
             return Files.readString(this.path, this.charset);
@@ -50,33 +59,28 @@ public final class TextFile implements Text {
     }
 
     @Override
-    public Text then(final Text text) {
-        return new PlainText(this.asString()).then(text);
-    }
-
-    @Override
     public Boolean contains(final Text text) {
-        return this.asString().contains(text.asString());
+        return this.fileText().contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return new PlainText(this.asString()).afterFirst(text);
+        return this.fileText().afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return new PlainText(this.asString()).afterLast(text);
+        return this.fileText().afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return new PlainText(this.asString()).beforeFirst(text);
+        return this.fileText().beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return new PlainText(this.asString()).beforeLast(text);
+        return this.fileText().beforeLast(text);
     }
 
     @Override
@@ -101,11 +105,17 @@ public final class TextFile implements Text {
     }
 
     @Override
-    public Boolean empty() {
-        try {
-            return Files.size(this.path) == 0;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Boolean blank() {
+        return this.fileText().blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.fileText().size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.fileText().sub(start, endExcluded);
     }
 }

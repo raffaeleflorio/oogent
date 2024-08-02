@@ -15,11 +15,6 @@ public final class Listed implements Text {
     }
 
     @Override
-    public String asString() {
-        return this.origin.asString();
-    }
-
-    @Override
     public Text then(final Text text) {
         return this.origin.then(text);
     }
@@ -55,7 +50,22 @@ public final class Listed implements Text {
     }
 
     @Override
-    public Boolean empty() {
-        return this.origin.empty();
+    public Boolean blank() {
+        return this.origin.blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.origin.size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.origin.sub(start, endExcluded);
+    }
+
+    @Override
+    public String asString() {
+        return this.origin.asString();
     }
 }

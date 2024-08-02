@@ -25,6 +25,15 @@ public final class PDF implements Text {
     }
 
     @Override
+    public Text then(final Text text) {
+        return this.pdfText().then(text);
+    }
+
+    private Text pdfText() {
+        return new PlainText(this.asString());
+    }
+
+    @Override
     public String asString() {
         try (var doc = Loader.loadPDF(this.path.toFile())) {
             return new PDFTextStripper().getText(doc);
@@ -34,42 +43,47 @@ public final class PDF implements Text {
     }
 
     @Override
-    public Text then(final Text text) {
-        return new PlainText(this.asString()).then(text);
-    }
-
-    @Override
     public Boolean contains(final Text text) {
-        return new PlainText(this.asString()).contains(text);
+        return this.pdfText().contains(text);
     }
 
     @Override
     public Text afterFirst(final Text text) {
-        return new PlainText(this.asString()).afterFirst(text);
+        return this.pdfText().afterFirst(text);
     }
 
     @Override
     public Text afterLast(final Text text) {
-        return new PlainText(this.asString()).afterLast(text);
+        return this.pdfText().afterLast(text);
     }
 
     @Override
     public Text beforeFirst(final Text text) {
-        return new PlainText(this.asString()).beforeFirst(text);
+        return this.pdfText().beforeFirst(text);
     }
 
     @Override
     public Text beforeLast(final Text text) {
-        return new PlainText(this.asString()).beforeLast(text);
+        return this.pdfText().beforeLast(text);
     }
 
     @Override
     public Boolean startsWith(final Text prefix) {
-        return this.asString().startsWith(prefix.asString());
+        return this.pdfText().startsWith(prefix);
     }
 
     @Override
-    public Boolean empty() {
-        return this.asString().isEmpty();
+    public Boolean blank() {
+        return this.pdfText().blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.pdfText().size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.pdfText().sub(start, endExcluded);
     }
 }

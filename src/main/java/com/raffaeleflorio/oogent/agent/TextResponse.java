@@ -68,11 +68,6 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public String asString() {
-        return this.completion.text().asString();
-    }
-
-    @Override
     public Text then(final Text text) {
         return this.completion.text().then(text);
     }
@@ -108,7 +103,22 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Boolean empty() {
-        return this.completion.text().empty();
+    public Boolean blank() {
+        return this.completion.text().blank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.completion.text().size();
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        return this.completion.text().sub(start, endExcluded);
+    }
+
+    @Override
+    public String asString() {
+        return this.completion.text().asString();
     }
 }

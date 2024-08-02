@@ -9,11 +9,6 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public String asString() {
-        return this.text;
-    }
-
-    @Override
     public Text then(final Text text) {
         return new PlainText(this.text.concat(text.asString()));
     }
@@ -79,7 +74,24 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public Boolean empty() {
+    public Boolean blank() {
         return this.text.isBlank();
+    }
+
+    @Override
+    public Integer size() {
+        return this.text.codePointCount(0, this.text.length());
+    }
+
+    @Override
+    public Text sub(final Integer start, final Integer endExcluded) {
+        var beginIndex = this.text.offsetByCodePoints(0, start);
+        var endIndex = this.text.offsetByCodePoints(0, endExcluded);
+        return new PlainText(this.text.substring(beginIndex, endIndex));
+    }
+
+    @Override
+    public String asString() {
+        return this.text;
     }
 }
