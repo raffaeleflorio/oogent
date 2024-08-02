@@ -125,6 +125,82 @@ public static void main(final String[] args) {
 }
 ```
 
+## RAG
+
+```java
+public static void main(final String[] args) {
+    var storage = new InMemoryVectorStorage(
+            new L4JEmbeddingModel(
+                    OllamaEmbeddingModel.builder().modelName("mxbai-embed-large:335m").baseUrl("http://127.0.0.1:11434").build()
+            ),
+            new CosineSimilarityScore()
+    );
+    storage.store(
+            new TextDocument(
+                    new Cached(
+                            new TextFile("/path/to/oogentDescription.txt")
+                    ),
+                    new PlainText("oogentDescription.txt"),
+                    text -> new FixedSizeChunks(text, 128)
+            )
+    );
+    storage.store(
+            new TextDocument(
+                    new Cached(
+                            new PDF("/path/to/UEFA_Euro_2024_Final_Intro.pdf") // content from: https://en.wikipedia.org/wiki/UEFA_Euro_2024_final
+                    ),
+                    new PlainText("UEFA_Euro_2024_Final_Intro.pdf"),
+                    text -> new SeparatedChunks(text, new PlainText("\n"))
+            )
+    );
+    var agent = new RAGAgent(
+            new StorageAgent(
+                    storage,
+                    0.8d,
+                    10
+            ),
+            new L4JLLM(OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
+            new L4JPromptTemplate("""
+                    You answer the Question by using the Reliable sources you found. Write just the answer.
+                    Question: {{text}}
+                    Reliable sources:
+                    {{context}}
+                    Answer:
+                    """
+            )
+    );
+    var oogentResponse = agent.response(
+            new PlainText("""
+                    Could I use oogent with Java?
+                    """
+            )
+    );
+    oogentResponse.sources().forEach(source -> System.out.println(source.id().asString()));
+    /*
+        oogentDescription.txt
+     */
+    System.out.println(oogentResponse.asString());
+    /*
+        Yes, you can use OOGent with Java, specifically for building Large Language Model (LLM) agents.
+     */
+
+    var euro2024Response = agent.response(
+            new PlainText("""
+                    Who scored the 2-1 goal in the Euro 2024 final?
+                    """
+            )
+    );
+    euro2024Response.sources().forEach(source -> System.out.println(source.id().asString()));
+    /*
+        UEFA_Euro_2024_Final_Intro.pdf
+     */
+    System.out.println(euro2024Response.asString());
+    /*
+        Mikel Oyarzabal
+     */
+}
+```
+
 ## Functional Agent
 
 ```java
@@ -148,75 +224,6 @@ public static void main(final String[] args) {
 ## Conditional Agent
 
 TODO
-
-## RAG
-
-```java
-public static void main(final String[] args) {
-    var storage = new InMemoryVectorStorage(
-            new L4JEmbeddingModel(
-                    OllamaEmbeddingModel.builder().modelName("all-minilm:33m").baseUrl("http://127.0.0.1:11434").build()
-            )
-    );
-    storage.store(
-            new PlainText("id0"),
-            new PlainText("""
-                    OOGent is a minimal Java 21 library useful to build LLM agents. It's written with Object-Oriented principles in mind.
-                    It encapsulates [langchain4j](https://docs.langchain4j.dev) to communicate with LLMs.
-                    """
-            )
-    );
-    storage.store(
-            new PlainText("id1"),
-            // from: https://en.wikipedia.org/wiki/Large_language_model
-            new PlainText("""
-                    A large language model (LLM) is a computational model notable for its ability to achieve general-purpose language generation and other natural language processing tasks such as classification. \
-                    Based on language models, LLMs acquire these abilities by learning statistical relationships from vast amounts of text during a computationally intensive self-supervised and semi-supervised training process.[1] \
-                    LLMs can be used for text generation, a form of generative AI, by taking an input text and repeatedly predicting the next token or word.[2]
-                    LLMs are artificial neural networks that utilize the transformer architecture, invented in 2017. \
-                    The largest and most capable LLMs, as of June 2024, are built with a decoder-only transformer-based architecture, which enables efficient processing and generation of large-scale text data.
-                    """
-            )
-    );
-    storage.store(
-            new PlainText("id2"),
-            // from: https://en.wikipedia.org/wiki/Large_language_model
-            new PlainText("""
-                    Some notable LLMs are OpenAI's GPT series of models (e.g., GPT-3.5, GPT-4 and GPT-4o; used in ChatGPT and Microsoft Copilot), Google's Gemini (the latter of which is currently used in the chatbot of the same name), Meta's LLaMA family of models, Anthropic's Claude models, and Mistral AI's models.
-                    """
-            )
-    );
-    var agent = new RAGAgent(
-            new StorageAgent(
-                    storage,
-                    10,
-                    0.8d
-            ),
-            new L4JLLM(OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
-            new L4JPromptTemplate("""
-                    Answer the following question using only the given knowledge.
-                    Question: {{text}}
-                    Knowledge: {{context}}
-                    Answer:
-                    """
-            )
-    );
-    var response = agent.response(
-            new PlainText("""
-                    Could I use oogent with Java?
-                    """
-            )
-    );
-    response.sources().forEach(source -> System.out.println(source.id()));
-    /*
-        id0
-     */
-    System.out.println(response.asString());
-    /*
-        Yes, you can use OOGent with Java, as it is specifically designed to be a minimal Java 21 library for building LLM (Large Language Model) agents.
-     */
-}
-```
 
 ## ReAct
 
