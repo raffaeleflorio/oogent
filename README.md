@@ -154,11 +154,6 @@ public static void main(final String[] args) {
             )
     );
     var agent = new RAGAgent(
-            new StorageAgent(
-                    storage,
-                    0.8d,
-                    10
-            ),
             new L4JLLM(OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
             new L4JPromptTemplate("""
                     You answer the Question by using the Reliable sources you found. Write just the answer.
@@ -167,6 +162,11 @@ public static void main(final String[] args) {
                     {{context}}
                     Answer:
                     """
+            ),
+            new StorageAgent(
+                    storage,
+                    0.8d,
+                    10
             )
     );
     var oogentResponse = agent.response(

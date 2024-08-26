@@ -13,33 +13,33 @@ import java.util.Map;
 
 public final class RAGAgent implements Agent {
 
-    private final Agent contextAgent;
     private final LLM llm;
     private final PromptTemplate promptTemplate;
+    private final Agent contextAgent;
     private final Text contextSourceId;
 
     public RAGAgent(
-            final Agent contextAgent,
             final LLM llm,
-            final PromptTemplate promptTemplate
+            final PromptTemplate promptTemplate,
+            final Agent contextAgent
     ) {
         this(
-                contextAgent,
                 llm,
                 promptTemplate,
+                contextAgent,
                 new PlainText("context")
         );
     }
 
     public RAGAgent(
-            final Agent contextAgent,
             final LLM llm,
             final PromptTemplate promptTemplate,
+            final Agent contextAgent,
             final Text contextSourceId
     ) {
-        this.contextAgent = contextAgent;
         this.llm = llm;
         this.promptTemplate = promptTemplate;
+        this.contextAgent = contextAgent;
         this.contextSourceId = contextSourceId;
     }
 
