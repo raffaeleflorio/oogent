@@ -16,7 +16,7 @@ public final class RAGAgent implements Agent {
     private final Agent contextAgent;
     private final LLM llm;
     private final PromptTemplate promptTemplate;
-    private final PlainText contextSourceId;
+    private final Text contextSourceId;
 
     public RAGAgent(
             final Agent contextAgent,
@@ -35,7 +35,7 @@ public final class RAGAgent implements Agent {
             final Agent contextAgent,
             final LLM llm,
             final PromptTemplate promptTemplate,
-            final PlainText contextSourceId
+            final Text contextSourceId
     ) {
         this.contextAgent = contextAgent;
         this.llm = llm;
