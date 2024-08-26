@@ -7,6 +7,7 @@ import com.raffaeleflorio.oogent.PromptTemplate;
 import com.raffaeleflorio.oogent.Response;
 import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.agent.TextResponse;
+import com.raffaeleflorio.oogent.agent.TextSource;
 
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public final class RAGAgent implements Agent {
         );
         return new TextResponse(
                 completion.text(),
-                context.sources(),
+                context.sources().with(new TextSource(new PlainText("context"), context)),
                 context.tokenUsage().sum(completion.tokenUsage())
         );
     }
