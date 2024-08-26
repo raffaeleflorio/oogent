@@ -16,15 +16,31 @@ public final class RAGAgent implements Agent {
     private final Agent contextAgent;
     private final LLM llm;
     private final PromptTemplate promptTemplate;
+    private final PlainText contextSourceId;
 
     public RAGAgent(
             final Agent contextAgent,
             final LLM llm,
             final PromptTemplate promptTemplate
     ) {
+        this(
+                contextAgent,
+                llm,
+                promptTemplate,
+                new PlainText("context")
+        );
+    }
+
+    public RAGAgent(
+            final Agent contextAgent,
+            final LLM llm,
+            final PromptTemplate promptTemplate,
+            final PlainText contextSourceId
+    ) {
         this.contextAgent = contextAgent;
         this.llm = llm;
         this.promptTemplate = promptTemplate;
+        this.contextSourceId = contextSourceId;
     }
 
     @Override
@@ -40,7 +56,7 @@ public final class RAGAgent implements Agent {
         );
         return new TextResponse(
                 completion.text(),
-                context.sources().with(new TextSource(new PlainText("context"), context)),
+                context.sources().with(new TextSource(this.contextSourceId, context)),
                 context.tokenUsage().sum(completion.tokenUsage())
         );
     }
