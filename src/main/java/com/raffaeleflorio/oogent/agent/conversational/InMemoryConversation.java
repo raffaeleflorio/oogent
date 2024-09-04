@@ -3,7 +3,6 @@ package com.raffaeleflorio.oogent.agent.conversational;
 import com.raffaeleflorio.oogent.Listed;
 import com.raffaeleflorio.oogent.PlainText;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -84,7 +83,6 @@ public final class InMemoryConversation implements Conversation {
         );
     }
 
-    @NotNull
     @Override
     public Iterator<Message> iterator() {
         return this.messages.iterator();

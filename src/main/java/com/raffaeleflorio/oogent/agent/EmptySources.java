@@ -3,7 +3,6 @@ package com.raffaeleflorio.oogent.agent;
 import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -45,7 +44,6 @@ public final class EmptySources implements Sources {
         return new MissingSource(id);
     }
 
-    @NotNull
     @Override
     public Iterator<Source> iterator() {
         return this.origin.iterator();

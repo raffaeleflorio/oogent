@@ -4,7 +4,6 @@ import com.raffaeleflorio.oogent.Listed;
 import com.raffaeleflorio.oogent.RelevantText;
 import com.raffaeleflorio.oogent.RelevantTexts;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +31,6 @@ final class InMemoryRelevantTexts implements RelevantTexts {
         );
     }
 
-    @NotNull
     @Override
     public Iterator<RelevantText> iterator() {
         return this.relevantTexts.iterator();

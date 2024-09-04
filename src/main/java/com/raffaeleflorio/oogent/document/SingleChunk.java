@@ -2,7 +2,6 @@ package com.raffaeleflorio.oogent.document;
 
 import com.raffaeleflorio.oogent.Document;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -15,7 +14,6 @@ public final class SingleChunk implements Document.Chunks {
         this.chunk = chunk;
     }
 
-    @NotNull
     @Override
     public Iterator<Text> iterator() {
         return new Iterator<>() {

@@ -3,7 +3,6 @@ package com.raffaeleflorio.oogent.agent;
 import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -76,7 +75,6 @@ public final class TextSources implements Sources {
         );
     }
 
-    @NotNull
     @Override
     public Iterator<Source> iterator() {
         return this.sources.values().iterator();

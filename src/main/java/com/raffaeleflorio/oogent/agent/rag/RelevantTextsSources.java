@@ -6,7 +6,6 @@ import com.raffaeleflorio.oogent.Source;
 import com.raffaeleflorio.oogent.Sources;
 import com.raffaeleflorio.oogent.Text;
 import com.raffaeleflorio.oogent.agent.TextSources;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
@@ -54,7 +53,6 @@ public final class RelevantTextsSources implements Sources {
         return this.origin.source(id);
     }
 
-    @NotNull
     @Override
     public Iterator<Source> iterator() {
         return this.origin.iterator();

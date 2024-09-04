@@ -2,7 +2,6 @@ package com.raffaeleflorio.oogent.document;
 
 import com.raffaeleflorio.oogent.Document;
 import com.raffaeleflorio.oogent.Text;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.stream.IntStream;
@@ -17,7 +16,6 @@ public final class FixedSizeChunks implements Document.Chunks {
         this.size = size;
     }
 
-    @NotNull
     @Override
     public Iterator<Text> iterator() {
         var textSize = this.text.size();
