@@ -20,7 +20,7 @@ public final class DelimitedChunks implements Document.Chunks {
     public Iterator<Text> iterator() {
         return new Iterator<>() {
 
-            private final Text separator = DelimitedChunks.this.delimiter;
+            private final Text delimiter = DelimitedChunks.this.delimiter;
             private Text text = DelimitedChunks.this.text;
             private boolean hasNext = true;
 
@@ -32,8 +32,8 @@ public final class DelimitedChunks implements Document.Chunks {
             @Override
             public Text next() {
                 if (this.hasNext) {
-                    var next = this.text.contains(this.separator) ? this.text.beforeFirst(this.separator) : this.text;
-                    this.text = this.text.contains(this.separator) ? this.text.afterFirst(this.separator) : null;
+                    var next = this.text.contains(this.delimiter) ? this.text.beforeFirst(this.delimiter) : this.text;
+                    this.text = this.text.contains(this.delimiter) ? this.text.afterFirst(this.delimiter) : null;
                     this.hasNext = this.text != null && this.text.size() > 0;
                     return next;
                 }
