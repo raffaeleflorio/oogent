@@ -12,7 +12,7 @@ public interface Conversation extends Iterable<Message> {
 
     Integer size();
 
-    Conversation head(Integer messages);
+    Conversation head(Integer nMessages);
 
-    Conversation tail(Integer messages);
+    Conversation tail(Integer nMessages);
 }

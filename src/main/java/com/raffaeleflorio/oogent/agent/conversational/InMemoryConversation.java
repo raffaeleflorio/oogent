@@ -61,10 +61,10 @@ public final class InMemoryConversation implements Conversation {
     }
 
     @Override
-    public Conversation head(final Integer messages) {
+    public Conversation head(final Integer nMessages) {
         return this.subList(
                 0,
-                Math.min(messages, this.size())
+                Math.min(nMessages, this.size())
         );
     }
 
@@ -76,9 +76,9 @@ public final class InMemoryConversation implements Conversation {
     }
 
     @Override
-    public Conversation tail(final Integer messages) {
+    public Conversation tail(final Integer nMessages) {
         return this.subList(
-                this.size() - Math.min(messages, this.size()),
+                this.size() - Math.min(nMessages, this.size()),
                 this.size()
         );
     }
