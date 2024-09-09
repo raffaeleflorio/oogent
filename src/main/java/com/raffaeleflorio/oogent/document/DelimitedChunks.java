@@ -6,22 +6,22 @@ import com.raffaeleflorio.oogent.Text;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public final class SeparatedChunks implements Document.Chunks {
+public final class DelimitedChunks implements Document.Chunks {
 
     private final Text text;
-    private final Text separator;
+    private final Text delimiter;
 
-    public SeparatedChunks(final Text text, final Text separator) {
+    public DelimitedChunks(final Text text, final Text delimiter) {
         this.text = text;
-        this.separator = separator;
+        this.delimiter = delimiter;
     }
 
     @Override
     public Iterator<Text> iterator() {
         return new Iterator<>() {
 
-            private final Text separator = SeparatedChunks.this.separator;
-            private Text text = SeparatedChunks.this.text;
+            private final Text separator = DelimitedChunks.this.delimiter;
+            private Text text = DelimitedChunks.this.text;
             private boolean hasNext = true;
 
             @Override
