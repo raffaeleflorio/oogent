@@ -30,11 +30,11 @@ public final class ExceptionalAgent implements Agent {
 
 
     @Override
-    public Response response(final Text text) {
+    public Response response(final Text input) {
         try {
-            return this.origin.response(text);
+            return this.origin.response(input);
         } catch (Exception e) {
-            return this.responseFn.apply(text, e);
+            return this.responseFn.apply(input, e);
         }
     }
 }

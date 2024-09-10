@@ -14,9 +14,9 @@ public final class L4JLLM implements LLM {
     }
 
     @Override
-    public Completion completion(final Text text) {
+    public Completion completion(final Text prompt) {
         return new L4JCompletion(
-                this.chatLanguageModel.generate(UserMessage.from(text.asString()))
+                this.chatLanguageModel.generate(UserMessage.from(prompt.asString()))
         );
     }
 }

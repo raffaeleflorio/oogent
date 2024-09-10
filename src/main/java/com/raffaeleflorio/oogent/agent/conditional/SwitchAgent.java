@@ -23,14 +23,14 @@ public final class SwitchAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
+    public Response response(final Text input) {
         return this.cases
                 .stream()
-                .filter(aCase -> aCase.condition.test(text))
+                .filter(aCase -> aCase.condition.test(input))
                 .findFirst()
                 .map(aCase -> aCase.agent)
-                .map(agent -> agent.response(text))
-                .orElseGet(() -> this.defaultAgent.response(text));
+                .map(agent -> agent.response(input))
+                .orElseGet(() -> this.defaultAgent.response(input));
     }
 
     public final static class Case {

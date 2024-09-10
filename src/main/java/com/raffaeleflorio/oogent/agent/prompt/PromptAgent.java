@@ -21,9 +21,9 @@ public final class PromptAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
+    public Response response(final Text input) {
         return new TextResponse(
-                this.llm.completion(this.promptTemplate.prompt(text))
+                this.llm.completion(this.promptTemplate.prompt(input))
         );
     }
 }

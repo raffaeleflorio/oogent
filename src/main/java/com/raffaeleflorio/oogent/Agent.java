@@ -2,5 +2,5 @@ package com.raffaeleflorio.oogent;
 
 public interface Agent {
 
-    Response response(Text text);
+    Response response(Text input);
 }

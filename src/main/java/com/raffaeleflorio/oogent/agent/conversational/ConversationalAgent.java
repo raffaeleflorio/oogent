@@ -45,10 +45,10 @@ public final class ConversationalAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
+    public Response response(final Text input) {
         return new TextResponse(
                 this.conversation
-                        .then(this.messageFn.apply(text))
+                        .then(this.messageFn.apply(input))
                         .listed(this.humanId, this.aiId)
         );
     }

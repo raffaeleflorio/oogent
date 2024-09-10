@@ -44,12 +44,12 @@ public final class RAGAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        var context = this.contextAgent.response(text);
+    public Response response(final Text input) {
+        var context = this.contextAgent.response(input);
         var completion = this.llm.completion(
                 this.promptTemplate.prompt(
                         Map.of(
-                                new PlainText("text"), text,
+                                new PlainText("input"), input,
                                 new PlainText("context"), context
                         )
                 )

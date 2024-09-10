@@ -20,7 +20,7 @@ public final class FunctionalAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        return this.fn.apply(text);
+    public Response response(final Text input) {
+        return this.fn.apply(input);
     }
 }

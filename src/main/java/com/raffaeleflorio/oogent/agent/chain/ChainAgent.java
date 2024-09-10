@@ -23,8 +23,8 @@ public final class ChainAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        var response = this.chain.getFirst().response(text);
+    public Response response(final Text input) {
+        var response = this.chain.getFirst().response(input);
         var sources = response.sources();
         var tokenUsage = response.tokenUsage();
         for (var i = 1; i < this.chain.size(); i++) {

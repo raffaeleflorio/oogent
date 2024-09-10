@@ -6,7 +6,7 @@ public interface PromptTemplate {
 
     Text prompt(Map<Text, Text> variables);
 
-    Text prompt(Text text);
+    Text prompt(Text variable);
 
     default Text prompt() {
         return this.prompt(Map.of());

@@ -13,7 +13,7 @@ public final class ConstAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
+    public Response response(final Text input) {
         return this.response;
     }
 }

@@ -18,11 +18,11 @@ public final class WhileAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        var result = this.origin.response(text);
+    public Response response(final Text input) {
+        var result = this.origin.response(input);
         var tokenUsage = result.tokenUsage();
         while (this.condition.test(result)) {
-            result = this.origin.response(text);
+            result = this.origin.response(input);
             tokenUsage = tokenUsage.sum(result.tokenUsage());
         }
         return new TextResponse(result, result.sources(), tokenUsage);

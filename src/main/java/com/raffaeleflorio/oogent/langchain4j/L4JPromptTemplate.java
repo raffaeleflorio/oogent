@@ -37,7 +37,7 @@ public final class L4JPromptTemplate implements PromptTemplate {
     }
 
     @Override
-    public Text prompt(final Text text) {
-        return this.prompt(Map.of(new PlainText("it"), text));
+    public Text prompt(final Text variable) {
+        return this.prompt(Map.of(new PlainText("it"), variable));
     }
 }

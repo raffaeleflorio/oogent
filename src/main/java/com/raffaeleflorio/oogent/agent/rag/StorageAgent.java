@@ -46,8 +46,8 @@ public final class StorageAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        var relevantTexts = this.storage.relevantTexts(text, this.minScore, this.limit);
+    public Response response(final Text input) {
+        var relevantTexts = this.storage.relevantTexts(input, this.minScore, this.limit);
         return this.responseFn.apply(relevantTexts);
     }
 }

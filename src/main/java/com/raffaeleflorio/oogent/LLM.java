@@ -2,7 +2,7 @@ package com.raffaeleflorio.oogent;
 
 public interface LLM {
 
-    Completion completion(Text text);
+    Completion completion(Text prompt);
 
     interface Completion {
 

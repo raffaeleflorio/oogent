@@ -19,7 +19,7 @@ public final class IfAgent implements Agent {
     }
 
     @Override
-    public Response response(final Text text) {
-        return this.condition.test(text) ? this.trueAgent.response(text) : this.falseAgent.response(text);
+    public Response response(final Text input) {
+        return this.condition.test(input) ? this.trueAgent.response(input) : this.falseAgent.response(input);
     }
 }
