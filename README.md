@@ -157,7 +157,7 @@ public static void main(final String[] args) {
             new L4JLLM(OllamaChatModel.builder().modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
             new L4JPromptTemplate("""
                     You answer the Question by using the Reliable sources you found. Write just the answer.
-                    Question: {{text}}
+                    Question: {{input}}
                     Reliable sources:
                     {{context}}
                     Answer:
