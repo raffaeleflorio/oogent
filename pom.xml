@@ -6,7 +6,7 @@
 
     <groupId>com.raffaeleflorio</groupId>
     <artifactId>oogent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -24,6 +24,7 @@
             <version>${langchain4j.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
