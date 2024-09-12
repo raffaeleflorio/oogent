@@ -18,12 +18,7 @@ final class MissingTool implements Tool {
     }
 
     @Override
-    public Text id() {
-        throw this.exception;
-    }
-
-    @Override
-    public Text signature() {
+    public Signature signature() {
         throw this.exception;
     }
 

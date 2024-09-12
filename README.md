@@ -205,68 +205,27 @@ public static void main(final String[] args) {
 
 ```java
 public static void main(final String[] args) {
-    var agent = new ReActAgent(
-            new Toolbox(
-                    new Tool() {
-                        @Override
-                        public Text id() {
-                            return new PlainText("sqrt");
-                        }
-
-                        @Override
-                        public Text signature() {
-                            return new PlainText("sqrt: Computes the square root of a number. It accepts a single numerical arguments (e.g., 4).");
-                        }
-
-                        @Override
-                        public Text result(final Text args) {
-                            var sqrt = Math.sqrt(Double.parseDouble(args.asString()));
-                            return new PlainText(String.valueOf(sqrt));
-                        }
-                    },
-                    new Tool() {
-                        @Override
-                        public Text id() {
-                            return new PlainText("sum");
-                        }
-
-                        @Override
-                        public Text signature() {
-                            return new PlainText("sum: Computes the sum between two or more numbers. It accepts two or more numerical arguments delimited by a comma (e..g, 123, 456, 789)");
-                        }
-
-                        @Override
-                        public Text result(final Text args) {
-                            var numbers = args.asString().split(",");
-                            var result = 0.0d;
-                            for (var number : numbers) {
-                                result += Double.parseDouble(number);
-                            }
-                            return new PlainText(String.valueOf(result));
-                        }
+    new Toolbox(
+            new FunctionalTool(
+                    "sqrt",
+                    "Computes the square root of a number. It accepts a single numerical arguments (e.g., 4).",
+                    args -> {
+                        var sqrt = Math.sqrt(Double.parseDouble(args.asString()));
+                        return new PlainText(String.valueOf(sqrt));
                     }
             ),
-            new L4JLLM(OllamaChatModel.builder().stop(List.of("Output:")).modelName("llama3.1:8b").baseUrl("http://127.0.0.1:11434").build()),
-            new L4JPromptTemplate("""
-                    Answer the user as best as possible. You could also execute the followings tools in order to provide the most accurate answer:
-                    {{tools}}
-                                            
-                    Answer step-by-step by following this format:
-                    Thought: your thoughts on what to do
-                    Tool: one of the above tool name. You have to skip this step if no one of the above tool is needed.
-                    Args: the previous Tool arguments. You have to skip this step if no Tool is needed.
-                    Output: the previous Tool output. You have to skip this step if no Tool is needed.
-                    ... Other N Thought steps...
-                    Thought: Great, I know the answer!
-                    Answer: your answer to the user
-                                            
-                    It's really important to follow the above format. So, don't include unnecessary or redundant steps.
-                                            
-                    So, here you are the User request.
-                                            
-                    User: {{input}}
-                    Thought:
-                    """)
+            new FunctionalTool(
+                    "sum",
+                    "Computes the sum between two or more numbers. It accepts two or more numerical arguments delimited by a comma (e..g, 123,456,789,123.456).",
+                    args -> {
+                        var numbers = args.asString().split(",");
+                        var result = 0.0d;
+                        for (var number : numbers) {
+                            result += Double.parseDouble(number);
+                        }
+                        return new PlainText(String.valueOf(result));
+                    }
+            )
     );
     System.out.println(agent.response(new PlainText("Hi!")).asString());
     /*

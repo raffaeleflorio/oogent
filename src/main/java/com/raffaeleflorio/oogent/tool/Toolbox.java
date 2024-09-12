@@ -25,7 +25,7 @@ public final class Toolbox implements Tools {
     public Toolbox(final Iterable<? extends Tool> tools) {
         this(
                 StreamSupport.stream(tools.spliterator(), false)
-                        .collect(Collectors.toUnmodifiableMap(tool -> tool.id().asString(), Function.identity()))
+                        .collect(Collectors.toUnmodifiableMap(tool -> tool.signature().id().asString(), Function.identity()))
         );
     }
 
@@ -51,6 +51,7 @@ public final class Toolbox implements Tools {
         return new Listed(
                 this.tools.values().stream()
                         .map(Tool::signature)
+                        .map(Tool.Signature::asText)
                         .map(prefix::then)
                         .toList()
         );
