@@ -26,7 +26,7 @@ public final class InMemoryConversation implements Conversation {
         this(id, List.of());
     }
 
-    InMemoryConversation(final Text id, final List<Message> messages) {
+    public InMemoryConversation(final Text id, final List<Message> messages) {
         this.id = id;
         this.messages = messages;
     }
