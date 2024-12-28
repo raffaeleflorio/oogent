@@ -7,7 +7,7 @@ public final class Listed implements Text {
     private final Text origin;
 
     public Listed(final List<? extends Text> texts) {
-        this(new Joined(texts, new PlainText("\n")));
+        this(new Joined(new PlainText("\n"), texts));
     }
 
     Listed(final Text origin) {
@@ -20,28 +20,28 @@ public final class Listed implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.origin.contains(text);
+    public Boolean contains(final Text subText) {
+        return this.origin.contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.origin.afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.origin.afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.origin.afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.origin.afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.origin.beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.origin.beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.origin.beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.origin.beforeLast(subText);
     }
 
     @Override

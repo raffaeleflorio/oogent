@@ -34,28 +34,28 @@ public final class Lowered implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.lowered().contains(text);
+    public Boolean contains(final Text subText) {
+        return this.lowered().contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.lowered().afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.lowered().afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.lowered().afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.lowered().afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.lowered().beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.lowered().beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.lowered().beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.lowered().beforeLast(subText);
     }
 
     @Override

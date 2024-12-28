@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 public final class Joined implements Text {
 
-    private final List<? extends Text> texts;
     private final Text delimiter;
+    private final List<? extends Text> texts;
 
-    public Joined(final List<? extends Text> texts, final Text delimiter) {
-        this.texts = texts;
+    public Joined(final Text delimiter, final List<? extends Text> texts) {
         this.delimiter = delimiter;
+        this.texts = texts;
     }
 
     @Override
@@ -31,28 +31,28 @@ public final class Joined implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.joined().contains(text);
+    public Boolean contains(final Text subText) {
+        return this.joined().contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.joined().afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.joined().afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.joined().afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.joined().afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.joined().beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.joined().beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.joined().beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.joined().beforeLast(subText);
     }
 
     @Override

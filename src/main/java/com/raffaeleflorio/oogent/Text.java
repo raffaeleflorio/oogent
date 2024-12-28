@@ -4,15 +4,15 @@ public interface Text {
 
     Text then(Text text);
 
-    Boolean contains(Text text);
+    Boolean contains(Text subText);
 
-    Text afterFirst(Text text);
+    Text afterFirst(Text subText);
 
-    Text afterLast(Text text);
+    Text afterLast(Text subText);
 
-    Text beforeFirst(Text text);
+    Text beforeFirst(Text subText);
 
-    Text beforeLast(Text text);
+    Text beforeLast(Text subText);
 
     Boolean startsWith(Text prefix);
 

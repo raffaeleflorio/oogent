@@ -31,28 +31,28 @@ public final class HumanMessage implements Message {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.message.contains(text);
+    public Boolean contains(final Text subText) {
+        return this.message.contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.message.afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.message.afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.message.afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.message.afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.message.beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.message.beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.message.beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.message.beforeLast(subText);
     }
 
     @Override

@@ -59,28 +59,28 @@ public final class TextFile implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.fileText().contains(text);
+    public Boolean contains(final Text subText) {
+        return this.fileText().contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.fileText().afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.fileText().afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.fileText().afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.fileText().afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.fileText().beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.fileText().beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.fileText().beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.fileText().beforeLast(subText);
     }
 
     @Override

@@ -14,14 +14,14 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.text.contains(text.asString());
+    public Boolean contains(final Text subText) {
+        return this.text.contains(subText.asString());
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        var offset = text.asString().length();
-        var begin = this.text.indexOf(text.asString()) + offset;
+    public Text afterFirst(final Text subText) {
+        var offset = subText.asString().length();
+        var begin = this.text.indexOf(subText.asString()) + offset;
         if (begin < offset) {
             throw new IllegalArgumentException(
                     "I'm unable to build the text after the first occurrence of the given text. It's missing"
@@ -35,9 +35,9 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        var offset = text.asString().length();
-        var begin = this.text.lastIndexOf(text.asString()) + offset;
+    public Text afterLast(final Text subText) {
+        var offset = subText.asString().length();
+        var begin = this.text.lastIndexOf(subText.asString()) + offset;
         if (begin < offset) {
             throw new IllegalArgumentException(
                     "I'm unable to build the text after the last occurrence of the given text. It's missing"
@@ -47,8 +47,8 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        var end = this.text.indexOf(text.asString());
+    public Text beforeFirst(final Text subText) {
+        var end = this.text.indexOf(subText.asString());
         if (end == -1) {
             throw new IllegalArgumentException(
                     "I'm unable to build the text before the first occurrence of the given text. It's missing"
@@ -58,8 +58,8 @@ public final class PlainText implements Text {
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        var end = this.text.lastIndexOf(text.asString());
+    public Text beforeLast(final Text subText) {
+        var end = this.text.lastIndexOf(subText.asString());
         if (end == -1) {
             throw new IllegalArgumentException(
                     "I'm unable to build the text before the last occurrence of the given text. It's missing"

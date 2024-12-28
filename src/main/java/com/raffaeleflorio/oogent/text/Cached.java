@@ -34,28 +34,28 @@ public final class Cached implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.cached().contains(text);
+    public Boolean contains(final Text subText) {
+        return this.cached().contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.cached().afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.cached().afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.cached().afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.cached().afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.cached().beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.cached().beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.cached().beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.cached().beforeLast(subText);
     }
 
     @Override

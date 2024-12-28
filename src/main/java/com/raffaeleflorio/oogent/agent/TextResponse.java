@@ -63,28 +63,28 @@ public final class TextResponse implements Response {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.text.contains(text);
+    public Boolean contains(final Text subText) {
+        return this.text.contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.text.afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.text.afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.text.afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.text.afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.text.beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.text.beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.text.beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.text.beforeLast(subText);
     }
 
     @Override

@@ -26,28 +26,28 @@ public final class Trimmed implements Text {
     }
 
     @Override
-    public Boolean contains(final Text text) {
-        return this.trimmed().contains(text);
+    public Boolean contains(final Text subText) {
+        return this.trimmed().contains(subText);
     }
 
     @Override
-    public Text afterFirst(final Text text) {
-        return this.trimmed().afterFirst(text);
+    public Text afterFirst(final Text subText) {
+        return this.trimmed().afterFirst(subText);
     }
 
     @Override
-    public Text afterLast(final Text text) {
-        return this.trimmed().afterLast(text);
+    public Text afterLast(final Text subText) {
+        return this.trimmed().afterLast(subText);
     }
 
     @Override
-    public Text beforeFirst(final Text text) {
-        return this.trimmed().beforeFirst(text);
+    public Text beforeFirst(final Text subText) {
+        return this.trimmed().beforeFirst(subText);
     }
 
     @Override
-    public Text beforeLast(final Text text) {
-        return this.trimmed().beforeLast(text);
+    public Text beforeLast(final Text subText) {
+        return this.trimmed().beforeLast(subText);
     }
 
     @Override
