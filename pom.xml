@@ -13,8 +13,11 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <langchain4j.version>0.33.0</langchain4j.version>
-        <pdfbox.version>3.0.2</pdfbox.version>
+        <langchain4j.version>0.36.2</langchain4j.version>
+        <pdfbox.version>3.0.3</pdfbox.version>
+        <junit-jupiter.version>5.11.4</junit-jupiter.version>
+        <assertj-core.version>3.27.0</assertj-core.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -31,5 +34,29 @@
             <version>${pdfbox.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
